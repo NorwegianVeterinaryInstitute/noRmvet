@@ -48,34 +48,7 @@ list_palettes <- function(group = NULL) {
     )
   }
 
-  if (group == "am_groups_eng") {
-    palette <- c(
-      "Aminoglycosides" = "#8dd3c7",
-      "Other aminoglycosides" = "#27665b",
-      "Quinolones" = "#b3cbff",
-      "Tetracyclines" = "#bebada",
-      "Cephalosporins (3rd gen.)" = "#fb8072",
-      "Amphenicols" = "#2f6488",
-      "Macrolides/lincosamides" = "#fdb462",
-      "Beta-lactams/penicillins" = "#b3de69",
-      "Carbapenems" = "#ffed6f",
-      "Polymyxins" = "#bc80bd",
-      "Sulfonamides and Trimethoprims" = "#ccebc5",
-      "Ionophores" = "#d9d9d9",
-      "Glycopeptides" = "black",
-      "Bacitracin*" = "#b15928",
-      "Avilamycin*" = "#ffff99",
-      "Daptomycin*" = "#ff7f00",
-      "Mupirocin*" = "#d9d9d9",
-      "Virginiamycin*" = "#fccde5",
-      "Antimycobacterials" = "grey40",
-      "Cephalosporins (2nd gen.)" = "#fb8072",
-      "Pleuromutilins" = "#8dd3a3",
-      "Steroid antibacterials" = "red"
-    )
-  }
-
-  if (group == "am_groups_nor") {
+  if (group == "am_groups") {
     palette <- c(
       "Aminoglykosider" = "#8dd3c7",
       "Andre aminoglykosider" = "#27665b",
