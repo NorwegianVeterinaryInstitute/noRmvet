@@ -48,7 +48,7 @@ list_palettes <- function(group = NULL) {
     )
   }
 
-  if (group == "am_groups") {
+  if (group == "am_groups_eng") {
     palette <- c(
       "Aminoglycosides" = "#8dd3c7",
       "Other aminoglycosides" = "#27665b",
@@ -72,6 +72,36 @@ list_palettes <- function(group = NULL) {
       "Cephalosporins (2nd gen.)" = "#fb8072",
       "Pleuromutilins" = "#8dd3a3",
       "Steroid antibacterials" = "red"
+    )
+  }
+
+  if (group == "am_groups_nor") {
+    palette <- c(
+      "Aminoglykosider" = "#8dd3c7",
+      "Andre aminoglykosider" = "#27665b",
+      "Kinoloner" = "#b3cbff",
+      "Tetrasykliner" = "#bebada",
+      "Cefalosporiner (1. gen.)" = "#fb8072",
+      "Cefalosporiner (2. gen.)" = "#fb8072",
+      "Cefalosporiner (3. gen.)" = "#fb8072",
+      "Cefalosporiner (4. gen.)" = "#fb8072",
+      "Cefalosporiner (5. gen.)" = "#fb8072",
+      "Amfenikoler" = "#2f6488",
+      "Makrolider/linkosamider" = "#fdb462",
+      "Beta-laktamer/penicilliner" = "#b3de69",
+      "Karbapenemer" = "#ffed6f",
+      "Polymyxiner" = "#bc80bd",
+      "Sulfonamider og trimetoprim" = "#ccebc5",
+      "Ionoforer" = "#d9d9d9",
+      "Glykopeptider" = "black",
+      "Bacitracin*" = "#b15928",
+      "Avilamycin*" = "#ffff99",
+      "Daptomycin*" = "#ff7f00",
+      "Mupirocin*" = "#d9d9d9",
+      "Virginiamycin*" = "#fccde5",
+      "Antimykobakterielle" = "grey40",
+      "Pleuromutiliner" = "#8dd3a3",
+      "Steroider" = "red"
     )
   }
 
