@@ -29,7 +29,7 @@ plot_mdr <- function(data,
       facet_wrap(~art_gruppe, ncol = 1)
 
   } else if (type == "am_groups_nor") {
-    ggplot(data, aes(percent, analyttkode_gruppe_nor, group = analyttkode_gruppe_nor)) +
+    ggplot(data, aes(percent, analyttkode_gruppe, group = analyttkode_gruppe)) +
       geom_line() +
       geom_point(aes(fill = report_year),
                  size = 3,
