@@ -27,7 +27,7 @@ calculate_mdr <- function(data,
   } else {
     am_data <- data %>%
       select(-MIC) %>%
-      left_join(am_groups, by = c("substans", "analyttkode_gruppe"))
+      left_join(am_groups, by = c("substans", "analyttkode_gruppe_nor"))
   }
 
   if (group == "animal") {
@@ -44,7 +44,7 @@ calculate_mdr <- function(data,
                art_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               analyttkode_gruppe) %>%
+               analyttkode_gruppe_nor) %>%
       mutate(res = ifelse(
         any(phenotype == "Resistant"), "Resistant","Sensitive")
       ) %>%
@@ -58,7 +58,7 @@ calculate_mdr <- function(data,
                art_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               analyttkode_gruppe,
+               analyttkode_gruppe_nor,
                .keep_all = TRUE) %>%
       ungroup()
 
@@ -88,7 +88,7 @@ calculate_mdr <- function(data,
                  art_gruppe,
                  bakterie_gruppe,
                  bakterie_kategori,
-                 analyttkode_gruppe,
+                 analyttkode_gruppe_nor,
                  nres) %>%
         count() %>%
         group_by(report_year) %>%
@@ -160,7 +160,7 @@ calculate_mdr <- function(data,
                mat_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               analyttkode_gruppe) %>%
+               analyttkode_gruppe_nor) %>%
       mutate(res = ifelse(
         any(phenotype == "Resistant"), "Resistant","Sensitive")
       ) %>%
@@ -174,7 +174,7 @@ calculate_mdr <- function(data,
                mat_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               analyttkode_gruppe,
+               analyttkode_gruppe_nor,
                .keep_all = TRUE) %>%
       ungroup()
 

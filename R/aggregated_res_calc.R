@@ -32,7 +32,7 @@ aggregated_res_calc <- function(data,
                art_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               analyttkode_gruppe) %>%
+               analyttkode_gruppe_nor) %>%
       mutate(res = ifelse(
         any(phenotype == "Resistant"), "Resistant","Sensitive")
       ) %>%
@@ -46,14 +46,14 @@ aggregated_res_calc <- function(data,
                art_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               analyttkode_gruppe,
+               analyttkode_gruppe_nor,
                .keep_all = TRUE) %>%
       ungroup() %>%
       select(report_year,
              art_gruppe,
              bakterie_gruppe,
              bakterie_kategori,
-             analyttkode_gruppe,
+             analyttkode_gruppe_nor,
              res)
   }
 
@@ -73,7 +73,7 @@ aggregated_res_calc <- function(data,
                art_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               analyttkode_gruppe) %>%
+               analyttkode_gruppe_nor) %>%
       mutate(res = ifelse(
         any(phenotype == "Resistant"), "Resistant","Sensitive")
       ) %>%
@@ -88,7 +88,7 @@ aggregated_res_calc <- function(data,
                art_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               analyttkode_gruppe,
+               analyttkode_gruppe_nor,
                .keep_all = TRUE) %>%
       ungroup() %>%
       select(report_year,
@@ -96,7 +96,7 @@ aggregated_res_calc <- function(data,
              mat_gruppe,
              bakterie_gruppe,
              bakterie_kategori,
-             analyttkode_gruppe,
+             analyttkode_gruppe_nor,
              res)
   }
 
@@ -115,7 +115,7 @@ aggregated_res_calc <- function(data,
                mat_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               analyttkode_gruppe) %>%
+               analyttkode_gruppe_nor) %>%
       mutate(res = ifelse(
         any(phenotype == "Resistant"), "Resistant","Sensitive")
       ) %>%
@@ -129,14 +129,14 @@ aggregated_res_calc <- function(data,
                mat_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               analyttkode_gruppe,
+               analyttkode_gruppe_nor,
                .keep_all = TRUE) %>%
       ungroup() %>%
       select(report_year,
              mat_gruppe,
              bakterie_gruppe,
              bakterie_kategori,
-             analyttkode_gruppe,
+             analyttkode_gruppe_nor,
              res)
   }
 
