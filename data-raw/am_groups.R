@@ -21,7 +21,6 @@ con <- dbConnect(
 # Get group data for substances
 am_groups <- as_tibble(tbl(con, "analytt_sens_group")) %>%
   mutate_all(~str_squish(.)) %>%
-  select(-analyttkode_sens) %>%
   filter(!is.na(substans))
 
 usethis::use_data(am_groups, overwrite = TRUE)
