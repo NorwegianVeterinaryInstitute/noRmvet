@@ -4,13 +4,7 @@
 \alias{fetch_nv_data}
 \title{Connect to NORM-VET database and fetch data}
 \usage{
-fetch_nv_data(
-  server = "sqlpjstest01",
-  database = "normvet",
-  user = "normvet",
-  pw_method = "prompt",
-  pw_file_path = NULL
-)
+fetch_nv_data(server, database, user)
 }
 \arguments{
 \item{server}{Name of the server to connect to}

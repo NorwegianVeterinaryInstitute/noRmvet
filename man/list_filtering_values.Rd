@@ -4,11 +4,7 @@
 \alias{list_filtering_values}
 \title{List filtering values}
 \usage{
-list_filtering_values(
-  server = "sqlpjstest",
-  database = "normvet",
-  user = "normvet"
-)
+list_filtering_values(server, database, user)
 }
 \arguments{
 \item{server}{Name of the server to connect to}
