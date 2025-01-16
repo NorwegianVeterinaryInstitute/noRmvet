@@ -4,7 +4,7 @@
 \alias{update_analyte_sens_group}
 \title{Update antimicrobial codes and names}
 \usage{
-update_analyte_sens_group(server, database, user)
+update_analyte_sens_group(server, database, user, update = FALSE)
 }
 \arguments{
 \item{server}{Name of the server to connect to}
@@ -12,9 +12,11 @@ update_analyte_sens_group(server, database, user)
 \item{database}{Name of the database to fetch data from}
 
 \item{user}{Username for the database connection}
+
+\item{update}{Logical, whether or not the data will be sent to the database. Check differences within the data before updating the database by using `update = FALSE`}
 }
 \description{
-This function updates the "analytt_sens_group" table in the NORM-VET Database.
+This function updates the "analytt_sens_group" table in the NORM-VET Database. The variable "update" is by default set to FALSE, so that the user can check the output data before overwriting the existing data in the database. The output of the function is a list containing three elements; the old data, the new data, and the differences between them.
 }
 \author{
 Håkon Kaspersen, \email{hakon.kaspersen@vetinst.no}

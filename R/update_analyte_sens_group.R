@@ -1,10 +1,11 @@
 #' Update antimicrobial codes and names
 #'
-#' This function updates the "analytt_sens_group" table in the NORM-VET Database.
+#' This function updates the "analytt_sens_group" table in the NORM-VET Database. The variable "update" is by default set to FALSE, so that the user can check the output data before overwriting the existing data in the database. The output of the function is a list containing three elements; the old data, the new data, and the differences between them.
 #'
 #' @param server Name of the server to connect to
 #' @param database Name of the database to fetch data from
 #' @param user Username for the database connection
+#' @param update Logical, whether or not the data will be sent to the database. Check differences within the data before updating the database by using `update = FALSE`
 #'
 #' @author Håkon Kaspersen, \email{hakon.kaspersen@@vetinst.no}
 #'
@@ -15,10 +16,12 @@
 #' @importFrom getPass getPass
 #' @importFrom DBI dbConnect
 #' @importFrom odbc odbc
+#' @importFrom diffdf diffdf
 #'
 update_analyte_sens_group <- function(server,
                                       database,
-                                      user) {
+                                      user,
+                                      update = FALSE) {
 
   # Fetch password
   pw <- getPass()
@@ -32,6 +35,8 @@ update_analyte_sens_group <- function(server,
     UID = user,
     PWD = pw
   )
+
+  old_table <- as_tibble(tbl(con, "analytt_sens_group"))
 
   new_codes <- data.frame(
     analyttkode_sens = c(
@@ -131,10 +136,30 @@ update_analyte_sens_group <- function(server,
     select(analyttkode_sens, substans, analyttkode_gruppe_nor) %>%
     rename("analyttkode_gruppe" = analyttkode_gruppe_nor)
 
-  dbWriteTable(
-    conn = con,
-    name = "analytt_sens_group",
-    RESULT_analyttkode_sens_gruppe,
-    overwrite = TRUE
+  test <- diffdf(old_table, RESULT_analyttkode_sens_gruppe)
+
+  if (update == FALSE) {
+    if (length(test) == 0) {
+      print("No differences detected, no update needed.")
+    } else {
+      print(
+        "Differences detected, see output and confirm before updating server."
+      )
+      return(
+        list(
+          "old_data" = old_table,
+          "new_data" = RESULT_analyttkode_sens_gruppe,
+          "diff" = test
+        )
+      )
+    }
+  } else {
+    print("Updating table in database.")
+    dbWriteTable(
+      conn = con,
+      name = "analytt_sens_group",
+      RESULT_analyttkode_sens_gruppe,
+      overwrite = TRUE
     )
+  }
 }
