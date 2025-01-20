@@ -1,3 +1,5 @@
+![noRmvet_pakke_logo](https://github.com/user-attachments/assets/c92855b6-7528-42e7-922e-b82a752ff992)
+
 # NORM-VET DATABASE R PACKAGE
 
 ## Description
@@ -6,7 +8,8 @@ visualize NORM-VET data from the NORM-VET database. The package also contains
 functions that are used to update the database when needed.
 
 ## Usage
-The `noRmvet` package has a suite of functions for different purposes.
+The `noRmvet` package has a suite of functions for different purposes. All
+functions have specific usage descriptions in R, accessible with `?`.
 
 ### Fetching data from the database
 The functions `fetch_nv_data` and `fetch_nv_mic_data` are used to extract 
