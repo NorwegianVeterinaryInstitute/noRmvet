@@ -21,4 +21,6 @@ Imports:
   purrr,
   tibble,
   diffdf
+Remotes:
+  NVIdb=github::NorwegianVeterinaryInstitute/NVIdb
 RoxygenNote: 7.3.2
