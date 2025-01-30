@@ -20,5 +20,6 @@ Imports:
   ggplot2,
   purrr,
   tibble,
-  diffdf
+  diffdf,
+  funtools
 RoxygenNote: 7.3.2
