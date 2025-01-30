@@ -19,7 +19,6 @@
 #' @importFrom diffdf diffdf
 #' @importFrom purrr reduce
 #' @importFrom stringr str_trim
-#' @importFrom funtools func_paste
 #' @importFrom NVIdb add_PJS_code_description
 #' @importFrom NVIdb read_PJS_codes_2_text
 #'

@@ -19,7 +19,6 @@
 #' @importFrom diffdf diffdf
 #' @importFrom purrr reduce
 #' @importFrom stringr str_trim
-#' @importFrom funtools func_paste
 #'
 update_plate_grouping <- function(server,
                                   database,
