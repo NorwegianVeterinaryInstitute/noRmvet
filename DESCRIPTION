@@ -19,5 +19,6 @@ Imports:
   tidyr,
   ggplot2,
   purrr,
-  tibble
+  tibble,
+  diffdf
 RoxygenNote: 7.3.2
