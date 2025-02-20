@@ -90,7 +90,8 @@ update_bacterial_category <- function(server,
           "0415010332",
           "0415010312",
           "0415010323",
-          "0415010302"
+          "0415010302",
+          "0406010105"
         ) ~ "Indikator",
         hensiktkode =="0200301002" ~ "Klinisk",
         analyttkode=="04150103320101" & hensiktkode == "08" ~ "Klinisk",
@@ -161,10 +162,27 @@ update_bacterial_category <- function(server,
       aar == "2013" &
         bakterie_gruppe == "Staphylococcus pseudintermedius" &
         art_gruppe == "Hund" ~ "Klinisk",
+      aar %in% c("2021","2022") &
+        bakterie_gruppe == "Escherichia coli" &
+        art_gruppe == "Høns" &
+        mat_gruppe %in% c("Lever","Milt") ~ "Klinisk",
+      # Endre gener til viktige
+      analyttnavn %in% c(
+        "ampC (gen), kromosomalt, oppregulert (360 bp)",
+        "ESBL-gen",
+        "ampC (gen), plasmidbårent",
+        "mecA (gen for meticillinresistens)",
+        "nuc (St. aureus nuklease-gen)",
+        "qnr, kinolonresistensgener",
+        "ampC (gen)"
+      ) ~ "Viktige",
+      analyttkode == "020147" ~ "Indikator",
+      substr(analyttkode, 1,2) == "07" ~ "Viktige",
+      analyttkode == "0403010208" ~ "Klinisk",
       TRUE ~ bakterie_kategori
     )) %>%
-    select(aar, analyttkode, hensiktkode, artkode, bakterie_kategori) %>%
-    distinct(aar, analyttkode, hensiktkode, artkode, bakterie_kategori)
+    select(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori) %>%
+    distinct(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori)
 
   test <- diffdf(old_table, RESULT_bacterial_category)
 
