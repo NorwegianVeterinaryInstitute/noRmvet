@@ -81,6 +81,7 @@ update_bacterial_group <- function(server,
         substr(kode, 1, 8) %in% c("04060205") ~  "Moritella",
         substr(kode, 1, 8) %in% c("04060302") ~  "Pasteurella",
         substr(kode, 1, 8) %in% c("04060304") ~  "Actinobacillus",
+        kode == "0403010208" ~ "Campylobacter upsaliensis",
         TRUE ~ as.character(NA)
       )
     ) %>%
@@ -119,6 +120,7 @@ update_bacterial_group <- function(server,
         grepl("CNS", gruppe, ignore.case = T) ~ "CNS",
         grepl("VRE - faecalis", gruppe, ignore.case = T) ~ "Enterococcus faecalis",
         grepl("VRE - faecium", gruppe, ignore.case = T) ~ "Enterococcus faecium",
+        gruppe == "Campylobacter upsaliensis" ~ "Campylobacter upsaliensis",
         TRUE ~ as.character(NA)
       )
     ) %>%
