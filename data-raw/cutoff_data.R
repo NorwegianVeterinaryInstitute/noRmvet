@@ -18,6 +18,9 @@ cutoff_data <- path %>%
          "dato" = DATO,
          "kilde" = Kilde,
          "mo" = MO,
-         "cut_off" = cutoff)
+         "cut_off" = cutoff) %>%
+  mutate(cut_off = ifelse(
+    cut_off == "0.06", "0.064", cut_off
+  ))
 
 usethis::use_data(cutoff_data, overwrite = TRUE)
