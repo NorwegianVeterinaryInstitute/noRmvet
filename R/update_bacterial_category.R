@@ -178,6 +178,7 @@ update_bacterial_category <- function(server,
       ) ~ "Viktige",
       analyttkode == "020147" ~ "Indikator",
       substr(analyttkode, 1,2) == "07" ~ "Viktige",
+      analyttkode == "0403010208" ~ "Klinisk",
       TRUE ~ bakterie_kategori
     )) %>%
     select(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori) %>%
