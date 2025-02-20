@@ -120,7 +120,7 @@ update_bacterial_group <- function(server,
         grepl("CNS", gruppe, ignore.case = T) ~ "CNS",
         grepl("VRE - faecalis", gruppe, ignore.case = T) ~ "Enterococcus faecalis",
         grepl("VRE - faecium", gruppe, ignore.case = T) ~ "Enterococcus faecium",
-        gruppe == "Campylobacter upsaliensis" ~ "Campylobacter upsaliensis",
+        gruppe == "Campylobacter upsaliensis" ~ "Campylobacter jejuni",
         TRUE ~ as.character(NA)
       )
     ) %>%
