@@ -8,7 +8,8 @@ create_micdist_salmonella(
   data,
   bacteria_category = NULL,
   species_group = NULL,
-  reporting_year = NULL
+  reporting_year = NULL,
+  material = NULL
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ create_micdist_salmonella(
 \item{species_group}{Animal species to filter on, leave blank to include all species}
 
 \item{reporting_year}{Report year to filter on}
+
+\item{material}{Either "Mat" or "Dyr"}
 }
 \description{
 Script for creating MIC distribution tables from resistance data for Salmonella
