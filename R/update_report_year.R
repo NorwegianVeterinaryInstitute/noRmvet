@@ -183,6 +183,8 @@ update_report_year <- function(server,
                            "1000101",
                            "1000102") &
         substr(artkode, 1, 11) == "03070101002" ~ "2024",
+      pjs_year %in% c("2017","2018","2019","2020","2021","2022","2023","2024") &
+        analyttkode == "0403010208" ~ "2024",
       TRUE ~ pjs_year
     )
     ) %>%
