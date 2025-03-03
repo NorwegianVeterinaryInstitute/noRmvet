@@ -16,7 +16,6 @@
 #' @importFrom getPass getPass
 #' @importFrom DBI dbConnect
 #' @importFrom odbc odbc
-#' @importFrom diffdf diffdf
 #' @importFrom purrr reduce
 #' @importFrom stringr str_trim
 #'
@@ -221,10 +220,26 @@ update_material_group <- function(server,
     summarise_all(list(func_paste)) %>%
     ungroup()
 
-  test <- diffdf(old_table, RESULT_material_group)
+  comp <- old_table %>%
+    left_join(
+      RESULT_material_group,
+      by = c(
+        "aar",
+        "ansvarlig_seksjon",
+        "innsendelsesnummer",
+        "provenummer",
+        "delprovenummer",
+        "undersokelsesnummer",
+        "resultatnummer",
+        "materialekode",
+        "materialenavn"
+      )
+    ) %>%
+    filter(mat_gruppe.x != mat_gruppe.y &
+             salmonella_materiale.x != salmonella_materiale.y)
 
   if (update == FALSE) {
-    if (length(test) == 0) {
+    if (nrow(comp) == 0) {
       print("No differences detected, no update needed.")
     } else {
       print(
@@ -233,7 +248,7 @@ update_material_group <- function(server,
       list(
         "old_data" = old_table,
         "new_data" = RESULT_material_group,
-        "diff" = test
+        "diff" = comp
       )
     }
   } else {
