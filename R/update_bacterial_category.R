@@ -184,10 +184,17 @@ update_bacterial_category <- function(server,
     select(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori) %>%
     distinct(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori)
 
-  test <- diffdf(old_table, RESULT_bacterial_category)
+  comp <- old_table %>%
+    left_join(
+      RESULT_bacterial_category,
+      by = c(
+        "aar", "analyttkode", "hensiktkode", "metodekode", "artkode"
+      )
+    ) %>%
+    filter(bakterie_kategori.x != bakterie_kategori.y)
 
   if (update == FALSE) {
-    if (length(test) == 0) {
+    if (nrow(comp) == 0) {
       print("No differences detected, no update needed.")
     } else {
       print(
@@ -196,7 +203,7 @@ update_bacterial_category <- function(server,
       list(
         "old_data" = old_table,
         "new_data" = RESULT_bacterial_category,
-        "diff" = test
+        "diff" = comp
       )
     }
   } else {
