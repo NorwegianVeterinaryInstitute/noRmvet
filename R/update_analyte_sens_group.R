@@ -16,7 +16,6 @@
 #' @importFrom getPass getPass
 #' @importFrom DBI dbConnect
 #' @importFrom odbc odbc
-#' @importFrom diffdf diffdf
 #'
 update_analyte_sens_group <- function(server,
                                       database,
@@ -136,10 +135,18 @@ update_analyte_sens_group <- function(server,
     select(analyttkode_sens, substans, analyttkode_gruppe_nor) %>%
     rename("analyttkode_gruppe" = analyttkode_gruppe_nor)
 
-  test <- diffdf(old_table, RESULT_analyttkode_sens_gruppe)
+  comp <- old_table %>%
+    left_join(
+      RESULT_analyttkode_sens_gruppe,
+      by = c(
+        "analyttkode_sens",
+        "substans"
+      )
+    ) %>%
+    filter(analyttkode_gruppe.x != analyttkode_gruppe.y)
 
   if (update == FALSE) {
-    if (length(test) == 0) {
+    if (nrow(comp) == 0) {
       print("No differences detected, no update needed.")
     } else {
       print(
@@ -149,7 +156,7 @@ update_analyte_sens_group <- function(server,
         list(
           "old_data" = old_table,
           "new_data" = RESULT_analyttkode_sens_gruppe,
-          "diff" = test
+          "diff" = comp
         )
       )
     }
