@@ -16,7 +16,6 @@
 #' @importFrom getPass getPass
 #' @importFrom DBI dbConnect
 #' @importFrom odbc odbc
-#' @importFrom diffdf diffdf
 #'
 update_report_year <- function(server,
                                database,
@@ -192,10 +191,20 @@ update_report_year <- function(server,
     select(aar, analyttkode, hensiktkode, artkode, report_year) %>%
     distinct(aar, analyttkode, hensiktkode, artkode, report_year)
 
-  test <- diffdf(old_table, RESULT_report_year)
+  comp <- old_table %>%
+    left_join(
+      RESULT_report_year,
+      by = c(
+        "aar",
+        "analyttkode",
+        "hensiktkode",
+        "artkode"
+      )
+    ) %>%
+    filter(report_year.x != report_year.y)
 
   if (update == FALSE) {
-    if (length(test) == 0) {
+    if (nrow(comp) == 0) {
       print("No differences detected, no update needed.")
     } else {
       print(
@@ -204,7 +213,7 @@ update_report_year <- function(server,
       list(
         "old_data" = old_table,
         "new_data" = RESULT_report_year,
-        "diff" = test
+        "diff" = comp
       )
     }
   } else {
