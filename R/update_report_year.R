@@ -159,23 +159,29 @@ update_report_year <- function(server,
       # Pasteurella, ok
       pjs_year %in% c("2017","2018","2019","2020","2021","2022" ) &
         substr(analyttkode,1,8) == "04060302" ~ "2023",
-      # E.coli klinisk? , ok
-      hensiktkode %in% c("0100107015","0100107014","0100101") &
-        substr(artkode, 1, 11) == "05090102004" &
-        substr(analyttkode,1,10) == "0406010105" &
+      # E.coli
+      # Kliniske Høns og kalkun 2020 - 2023
+      hensiktkode %in% c("06111","0100107015","0100107014","0100101") &
+        substr(artkode, 1, 10) == "0509010200" &
+        substr(analyttkode,1,10) == "040601010" &
         pjs_year %in% c("2020","2021","2022","2023") ~ "2024",
+      # ? Høns
       !hensiktkode %in% c("0200301", "0200161")  &
-        !substr(artkode, 1, 11) == "05090102004" &
+        !substr(artkode, 1, 10) == "0509010200" &
         substr(analyttkode,1,10) == "0406010105"
       & pjs_year %in% c("2020","2021","2022") ~ "2023",
       substr(hensiktkode,1,5) == "01001" &
-        !substr(artkode, 1, 11) == "05090102004" &
+        !substr(artkode, 1, 10) == "0509010200" &
         substr(analyttkode,1,10) == "0406010105"
       & pjs_year %in% c("2020","2021","2022") ~ "2023",
-      pjs_year %in% c("2020","2021","2022","2023") &
+      pjs_year %in% c("2020","2021","2022","2023","2024") &
         hensiktkode %in% c("06111","0100107015","0100107014","0100101") &
         analyttkode == "0406010105" &
-        substr(artkode, 1, 10) == "0509010200" ~ "2024",
+        substr(artkode, 1, 11) == "05090102004" ~ "2024",
+      pjs_year %in% c("2020","2021","2022","2023","2024") &
+        hensiktkode %in% c("06111","0100107015","0100107014","0100101") &
+        analyttkode == "0406010105" &
+        substr(artkode, 1, 11) == "05090102005" ~ "2024",
       pjs_year == "2023" &
         analyttkode == "0415030202" &
         hensiktkode %in% c("0100107014",
