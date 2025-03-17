@@ -182,7 +182,7 @@ update_report_year <- function(server,
         hensiktkode %in% c("06111","0100107015","0100107014","0100101") &
         analyttkode == "0406010105" &
         substr(artkode, 1, 11) == "05090102005" ~ "2024",
-      pjs_year == "2023" &
+      pjs_year %in% c("2020","2021","2022","2023") &
         analyttkode == "0415030202" &
         hensiktkode %in% c("0100107014",
                            "1000101",
