@@ -133,7 +133,8 @@ update_analyte_sens_group <- function(server,
       )
     ) %>%
     select(analyttkode_sens, substans, analyttkode_gruppe_nor) %>%
-    rename("analyttkode_gruppe" = analyttkode_gruppe_nor)
+    rename("analyttkode_gruppe" = analyttkode_gruppe_nor) %>%
+    distinct()
 
   comp <- old_table %>%
     left_join(
