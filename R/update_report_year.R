@@ -35,7 +35,9 @@ update_report_year <- function(server,
     PWD = pw
   )
 
-  old_table <- as_tibble(tbl(con, "report_sampling_year"))
+  old_table <- as_tibble(tbl(con, "report_sampling_year")) %>%
+    mutate(aar = as.character(aar),
+           report_year = as.character(report_year))
 
   # Define which tables to import from
   tables <- c("prove",
@@ -130,9 +132,14 @@ update_report_year <- function(server,
                         "2015","2016","2017",
                         "2018","2019") ~ "2020",
       # Streptococcus canis, ok
-      substr(hensiktkode, 1,2) != "02" &
+      pjs_year %in% c("2020","2021","2022","2023") &
         analyttkode == "0415030202" &
-        pjs_year == "2018" ~ "2019",
+        hensiktkode %in% c("0100107014",
+                           "1000101",
+                           "1000102") &
+        substr(artkode, 1, 11) == "03070101002" ~ "2024",
+      pjs_year == "2018" &
+        analyttkode == "0415030202" ~ "2019",
       # Staphylococcus aureus, storfe, klinisk, ok
       pjs_year == "2021" &
         analyttkode == "0415010302" &
@@ -182,20 +189,19 @@ update_report_year <- function(server,
         hensiktkode %in% c("06111","0100107015","0100107014","0100101") &
         analyttkode == "0406010105" &
         substr(artkode, 1, 11) == "05090102005" ~ "2024",
-      pjs_year %in% c("2020","2021","2022","2023") &
-        analyttkode == "0415030202" &
-        hensiktkode %in% c("0100107014",
-                           "1000101",
-                           "1000102") &
-        substr(artkode, 1, 11) == "03070101002" ~ "2024",
       pjs_year %in% c("2017","2018","2019","2020","2021","2022","2023","2024") &
         analyttkode == "0403010208" ~ "2024",
+      pjs_year == "2005" &
+        artkode == "03070101002" &
+        hensiktkode == "0200301001" ~ "2004",
       TRUE ~ pjs_year
     )
     ) %>%
     rename("aar" = pjs_year) %>%
     select(aar, analyttkode, hensiktkode, artkode, report_year) %>%
-    distinct(aar, analyttkode, hensiktkode, artkode, report_year)
+    distinct(aar, analyttkode, hensiktkode, artkode, report_year) %>%
+    mutate(aar = as.character(aar),
+           report_year = as.character(report_year))
 
   comp <- old_table %>%
     left_join(
