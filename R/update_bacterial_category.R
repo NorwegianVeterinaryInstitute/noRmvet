@@ -37,7 +37,8 @@ update_bacterial_category <- function(server,
     PWD = pw
   )
 
-  old_table <- as_tibble(tbl(con, "bakterie_kategori"))
+  old_table <- as_tibble(tbl(con, "bakterie_kategori")) %>%
+    mutate(aar = as.character(aar))
 
   tables <- c("prove",
               "delprove",
@@ -182,7 +183,8 @@ update_bacterial_category <- function(server,
       TRUE ~ bakterie_kategori
     )) %>%
     select(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori) %>%
-    distinct(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori)
+    distinct(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori) %>%
+    mutate(aar = as.character(aar))
 
   comp <- old_table %>%
     left_join(
