@@ -16,7 +16,6 @@
 #' @importFrom getPass getPass
 #' @importFrom DBI dbConnect
 #' @importFrom odbc odbc
-#' @importFrom diffdf diffdf
 #' @importFrom purrr reduce
 #' @importFrom stringr str_trim
 #'
@@ -164,10 +163,24 @@ update_plate_grouping <- function(server,
     summarise_all(list(func_paste)) %>%
     ungroup()
 
-  test <- diffdf(old_table, sens_undersokelse)
+  comp <- old_table %>%
+    left_join(
+      sens_undersokelse,
+      by = c(
+        "aar",
+        "ansvarlig_seksjon",
+        "innsendelsesnummer",
+        "provenummer",
+        "delprovenummer",
+        "undersokelsesnummer",
+        "resultatnummer"
+      )
+    ) %>%
+    filter(sens_undersokelsesnummer.x != sens_undersokelsesnummer.y)
+
 
   if (update == FALSE) {
-    if (length(test) == 0) {
+    if (nrow(comp) == 0) {
       print("No differences detected, no update needed.")
     } else {
       print(
@@ -176,7 +189,7 @@ update_plate_grouping <- function(server,
       list(
         "old_data" = old_table,
         "new_data" = sens_undersokelse,
-        "diff" = test
+        "diff" = comp
       )
     }
   } else {

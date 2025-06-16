@@ -16,7 +16,6 @@
 #' @importFrom getPass getPass
 #' @importFrom DBI dbConnect
 #' @importFrom odbc odbc
-#' @importFrom diffdf diffdf
 #' @importFrom purrr reduce
 #' @importFrom stringr str_trim
 #' @importFrom NVIdb add_PJS_code_description
@@ -113,16 +112,42 @@ update_species_groups <- function(server,
           grepl("storfe", ignore.case = T, merknad) ~ "Storfe",
         TRUE ~ art
       )) %>%
-    select(aar, ansvarlig_seksjon, innsendelsesnummer, artkode, hensiktkode, driftsformkode, art_gruppe) %>%
-    mutate(saksnr = paste(aar, ansvarlig_seksjon, innsendelsesnummer, art_gruppe, sep = "-"),
-           dupl = duplicated(saksnr)) %>%
+    select(
+      aar,
+      ansvarlig_seksjon,
+      innsendelsesnummer,
+      artkode,
+      hensiktkode,
+      driftsformkode,
+      art_gruppe
+    ) %>%
+    mutate(
+      saksnr = paste(aar,
+                     ansvarlig_seksjon,
+                     innsendelsesnummer,
+                     art_gruppe,
+                     sep = "-"),
+      dupl = duplicated(saksnr)
+    ) %>%
     filter(dupl == FALSE) %>%
     select(-c(saksnr, dupl))
 
-  test <- diffdf(old_table, RESULT_artkode_gruppe)
+  comp <- old_table %>%
+    left_join(
+      RESULT_artkode_gruppe,
+      by = c(
+        "aar",
+        "ansvarlig_seksjon",
+        "innsendelsesnummer",
+        "artkode",
+        "hensiktkode",
+        "driftsformkode"
+      )
+    ) %>%
+    filter(art_gruppe.x != art_gruppe.y)
 
   if (update == FALSE) {
-    if (length(test) == 0) {
+    if (nrow(comp) == 0) {
       print("No differences detected, no update needed.")
     } else {
       print(
@@ -131,7 +156,7 @@ update_species_groups <- function(server,
       list(
         "old_data" = old_table,
         "new_data" = RESULT_artkode_gruppe,
-        "diff" = test
+        "diff" = comp
       )
     }
   } else {
