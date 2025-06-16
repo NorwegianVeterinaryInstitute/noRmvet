@@ -16,7 +16,6 @@
 #' @importFrom getPass getPass
 #' @importFrom DBI dbConnect
 #' @importFrom odbc odbc
-#' @importFrom diffdf diffdf
 #'
 update_bacterial_group <- function(server,
                                    database,
@@ -130,10 +129,19 @@ update_bacterial_group <- function(server,
       "bakterie_gruppe" = gruppe
     )
 
-  test <- diffdf(old_table, RESULT_bacterial_group)
+  comp <- old_table %>%
+    left_join(
+      RESULT_bacterial_group,
+      by = c(
+        "analyttkode",
+        "analyttnavn"
+      )
+    ) %>%
+    filter(bakterie_gruppe.x != bakterie_gruppe.y |
+             cut_off_gruppe.x != cut_off_gruppe.y)
 
   if (update == FALSE) {
-    if (length(test) == 0) {
+    if (nrow(comp) == 0) {
       print("No differences detected, no update needed.")
     } else {
       print(
@@ -142,7 +150,7 @@ update_bacterial_group <- function(server,
       list(
         "old_data" = old_table,
         "new_data" = RESULT_bacterial_group,
-        "diff" = test
+        "diff" = comp
       )
     }
   } else {

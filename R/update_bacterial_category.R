@@ -16,7 +16,6 @@
 #' @importFrom getPass getPass
 #' @importFrom DBI dbConnect
 #' @importFrom odbc odbc
-#' @importFrom diffdf diffdf
 #' @importFrom purrr reduce
 #'
 update_bacterial_category <- function(server,

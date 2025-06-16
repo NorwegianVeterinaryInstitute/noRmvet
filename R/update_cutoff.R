@@ -16,7 +16,6 @@
 #' @importFrom getPass getPass
 #' @importFrom DBI dbConnect
 #' @importFrom odbc odbc
-#' @importFrom diffdf diffdf
 #'
 update_cutoff <- function(server,
                           database,
@@ -44,10 +43,18 @@ update_cutoff <- function(server,
     ungroup() %>%
     select(analyttkode_sens, cut_off_gruppe, cut_off)
 
-  test <- diffdf(old_table, RESULT_cutoffs)
+  comp <- old_table %>%
+    left_join(
+      RESULT_cutoffs,
+      by = c(
+        "analyttkode_sens",
+        "cut_off_gruppe"
+      )
+    ) %>%
+    filter(cut_off.x != cut_off.y)
 
   if (update == FALSE) {
-    if (length(test) == 0) {
+    if (nrow(comp) == 0) {
       print("No differences detected, no update needed.")
     } else {
       print(
@@ -56,7 +63,7 @@ update_cutoff <- function(server,
       list(
         "old_data" = old_table,
         "new_data" = RESULT_cutoffs,
-        "diff" = test
+        "diff" = comp
       )
     }
   } else {

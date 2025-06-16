@@ -235,7 +235,7 @@ update_material_group <- function(server,
         "materialenavn"
       )
     ) %>%
-    filter(mat_gruppe.x != mat_gruppe.y &
+    filter(mat_gruppe.x != mat_gruppe.y |
              salmonella_materiale.x != salmonella_materiale.y)
 
   if (update == FALSE) {
