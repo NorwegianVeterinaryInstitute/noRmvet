@@ -8,7 +8,7 @@ library(purrr)
 input <- "//vetinst.no/dfs-felles/StasjonK/FAG/Provedata/Rapportering/NormVetUtvikling/Input_data/"
 path <- paste0(input, "Cutoff_med_class.xlsx")
 
-cutoff_data <- path %>%
+cutoffs <- path %>%
   excel_sheets() %>%
   set_names() %>%
   map_dfr(read_excel, path = path, col_types = "text", .id = "SheetName") %>%
@@ -22,5 +22,10 @@ cutoff_data <- path %>%
   mutate(cut_off = ifelse(
     cut_off == "0.06", "0.064", cut_off
   ))
+
+cutoff_data <- cutoffs %>%
+  filter(analyttkode_sens == "080115") %>%
+  mutate(analyttkode_sens = "08011501") %>%
+  bind_rows(cutoffs)
 
 usethis::use_data(cutoff_data, overwrite = TRUE)

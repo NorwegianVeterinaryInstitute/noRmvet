@@ -16,7 +16,6 @@
 #' @importFrom getPass getPass
 #' @importFrom DBI dbConnect
 #' @importFrom odbc odbc
-#' @importFrom diffdf diffdf
 #' @importFrom purrr reduce
 #'
 update_bacterial_category <- function(server,
@@ -37,7 +36,8 @@ update_bacterial_category <- function(server,
     PWD = pw
   )
 
-  old_table <- as_tibble(tbl(con, "bakterie_kategori"))
+  old_table <- as_tibble(tbl(con, "bakterie_kategori")) %>%
+    mutate(aar = as.character(aar))
 
   tables <- c("prove",
               "delprove",
@@ -182,12 +182,20 @@ update_bacterial_category <- function(server,
       TRUE ~ bakterie_kategori
     )) %>%
     select(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori) %>%
-    distinct(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori)
+    distinct(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori) %>%
+    mutate(aar = as.character(aar))
 
-  test <- diffdf(old_table, RESULT_bacterial_category)
+  comp <- old_table %>%
+    left_join(
+      RESULT_bacterial_category,
+      by = c(
+        "aar", "analyttkode", "hensiktkode", "metodekode", "artkode"
+      )
+    ) %>%
+    filter(bakterie_kategori.x != bakterie_kategori.y)
 
   if (update == FALSE) {
-    if (length(test) == 0) {
+    if (nrow(comp) == 0) {
       print("No differences detected, no update needed.")
     } else {
       print(
@@ -196,7 +204,7 @@ update_bacterial_category <- function(server,
       list(
         "old_data" = old_table,
         "new_data" = RESULT_bacterial_category,
-        "diff" = test
+        "diff" = comp
       )
     }
   } else {
