@@ -26,6 +26,7 @@ cutoffs <- path %>%
 cutoff_data <- cutoffs %>%
   filter(analyttkode_sens == "080115") %>%
   mutate(analyttkode_sens = "08011501") %>%
-  bind_rows(cutoffs)
+  bind_rows(cutoffs) %>%
+  distinct()
 
 usethis::use_data(cutoff_data, overwrite = TRUE)
