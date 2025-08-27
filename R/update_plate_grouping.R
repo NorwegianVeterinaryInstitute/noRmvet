@@ -116,8 +116,7 @@ update_plate_grouping <- function(server,
     filter(substr(analyttkode_sens, 1,2) == "08") %>%
     left_join(substances_per_plate) %>%
     filter(metodekode_sens %in% c("020148","020075"),
-           grepl("Cefepim|Temosilin", substances),
-           grepl("klavulansyre", substances)) %>%
+           grepl("Cefepim|Temosilin", substances)) %>%
     mutate(metodekode_sens_new = "020185") %>%
     select(
       aar,
