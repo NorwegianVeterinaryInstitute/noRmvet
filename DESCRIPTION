@@ -22,5 +22,5 @@ Imports:
   tibble,
   diffdf
 Remotes:
-  NVIdb=github::NorwegianVeterinaryInstitute/NVIdb
+  NVIpjsr=github::NorwegianVeterinaryInstitute/NVIpjsr
 RoxygenNote: 7.3.2

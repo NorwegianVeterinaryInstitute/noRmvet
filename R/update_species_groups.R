@@ -18,8 +18,8 @@
 #' @importFrom odbc odbc
 #' @importFrom purrr reduce
 #' @importFrom stringr str_trim
-#' @importFrom NVIdb add_PJS_code_description
-#' @importFrom NVIdb read_PJS_codes_2_text
+#' @importFrom NVIpjsr add_PJS_code_description
+#' @importFrom NVIpjsr read_PJS_codes_2_text
 #'
 update_species_groups <- function(server,
                                   database,
@@ -73,7 +73,7 @@ update_species_groups <- function(server,
   RESULT_artkode_gruppe <- innsendelse_db %>%
     reduce(tables, left_join, .init = .) %>%
     dplyr::mutate(artkode = stringr::str_trim(artkode)) %>%
-    NVIdb::add_PJS_code_description(
+    NVIpjsr::add_PJS_code_description(
       PJS_codes_2_text,
       PJS_variable_type = c("art", "hensikt", "driftsform"),
       code_colname = c("artkode", "hensiktkode", "driftsformkode"),
