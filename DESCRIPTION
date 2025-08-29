@@ -20,8 +20,5 @@ Imports:
   ggplot2,
   purrr,
   tibble,
-  diffdf,
-  NVIpjsr
-Remotes:
-  github::NorwegianVeterinaryInstitute/NVIpjsr
+  diffdf
 RoxygenNote: 7.3.2
