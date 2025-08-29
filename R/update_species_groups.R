@@ -18,15 +18,11 @@
 #' @importFrom odbc odbc
 #' @importFrom purrr reduce
 #' @importFrom stringr str_trim
-#' @importFrom NVIpjsr add_PJS_code_description
-#' @importFrom NVIpjsr read_PJS_codes_2_text
 #'
 update_species_groups <- function(server,
                                   database,
                                   user,
                                   update = FALSE) {
-
-  PJS_codes_2_text <- read_PJS_codes_2_text()
 
   # Fetch password
   pw <- getPass()
@@ -73,12 +69,7 @@ update_species_groups <- function(server,
   RESULT_artkode_gruppe <- innsendelse_db %>%
     reduce(tables, left_join, .init = .) %>%
     dplyr::mutate(artkode = stringr::str_trim(artkode)) %>%
-    NVIpjsr::add_PJS_code_description(
-      PJS_codes_2_text,
-      PJS_variable_type = c("art", "hensikt", "driftsform"),
-      code_colname = c("artkode", "hensiktkode", "driftsformkode"),
-      new_column = c("art", "hensikt", "driftsform")
-    ) %>%
+    left_join(species_codes) %>%
     dplyr::mutate(
       art_gruppe = case_when(
         artkode == "03100101001007" ~ "Villsvin",
