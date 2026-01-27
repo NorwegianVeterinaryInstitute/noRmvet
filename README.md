@@ -1,6 +1,4 @@
-<img src="man/figures/logo.png" align="right" width="120" />
-
-# NORM-VET DATABASE R PACKAGE
+# noRmvet <img src="man/figures/logo.png" align="right" height="138" />
 
 ## Description
 The `noRmvet` package contains functions and data frames used to analyse and 
