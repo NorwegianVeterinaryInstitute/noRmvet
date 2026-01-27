@@ -1,0 +1,24 @@
+Package: noRmvet
+Type: Package
+Title: R Package For Connecting And Handling Data From The NORM-VET Database
+Version: 1.0.3
+Author: Håkon Kaspersen
+Maintainer: Håkon Kaspersen <hakon.kaspersen@vetinst.no>
+Description: Provides functions for correctly fetching and handling data from the NORM-VET database.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 4.2.0)
+Imports:
+  dplyr,
+  dbplyr,
+  DBI,
+  getPass,
+  odbc,
+  stringr,
+  tidyr,
+  ggplot2,
+  purrr,
+  tibble,
+  diffdf
+RoxygenNote: 7.3.2
