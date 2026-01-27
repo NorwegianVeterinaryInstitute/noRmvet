@@ -1,4 +1,4 @@
-![noRmvet_pakke_logo](https://github.com/user-attachments/assets/c92855b6-7528-42e7-922e-b82a752ff992)
+<img src="man/figures/logo.png" align="right" width="120" />
 
 # NORM-VET DATABASE R PACKAGE
 
