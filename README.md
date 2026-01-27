@@ -1,4 +1,4 @@
-# noRmvet <img src="man/figures/logo.png" align="right" height="150" />
+# noRmvet <img src="man/figures/logo.png" align="right" height="170" />
 
 The `noRmvet` package contains functions and data frames used to analyse and 
 visualize NORM-VET data from the NORM-VET database. The package also contains 
