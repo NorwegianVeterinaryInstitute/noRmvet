@@ -5,8 +5,8 @@
 #' @param server Name of the server to connect to
 #' @param database Name of the database to fetch data from
 #' @param user Username for the database connection
-#' @param pw_method Specifies how the user supplies the database password, either "prompt" for an actual promt, or "local" to specify a text file holding the password
-#' @param pw_file_path Path to text file holding the password, must be supplied when using "pw_method = local"
+#' @param password Password for the database connection, leave blank if pw_prompt = TRUE
+#' @param pw_prompt Specifies how the user supplies the database password, TRUE means a prompt will appear, FALSE means the user will supply the password directly
 #'
 #' @author Håkon Kaspersen, \email{hakon.kaspersen@@vetinst.no}
 #'
@@ -19,12 +19,18 @@
 #' @importFrom stringr str_squish
 #' @importFrom purrr reduce
 #'
-fetch_nv_mic_data <- function(server,
-                              database,
-                              user) {
+fetch_nv_mic_data <- function(server = NULL,
+                              database = NULL,
+                              user = NULL,
+                              password = NULL,
+                              pw_prompt = TRUE) {
 
-  # Fetch password
-  pw <- getPass()
+  # Fetch password from user
+  if (isTRUE(pw_prompt)) {
+    pw <- getPass()
+  } else {
+    pw <- password
+  }
 
   print("Connecting to database...")
 

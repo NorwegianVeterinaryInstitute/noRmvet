@@ -4,7 +4,13 @@
 \alias{fetch_nv_mic_data}
 \title{Connect to NORM-VET database and fetch MIC data}
 \usage{
-fetch_nv_mic_data(server, database, user)
+fetch_nv_mic_data(
+  server = NULL,
+  database = NULL,
+  user = NULL,
+  password = NULL,
+  pw_prompt = TRUE
+)
 }
 \arguments{
 \item{server}{Name of the server to connect to}
@@ -13,9 +19,9 @@ fetch_nv_mic_data(server, database, user)
 
 \item{user}{Username for the database connection}
 
-\item{pw_method}{Specifies how the user supplies the database password, either "prompt" for an actual promt, or "local" to specify a text file holding the password}
+\item{password}{Password for the database connection, leave blank if pw_prompt = TRUE}
 
-\item{pw_file_path}{Path to text file holding the password, must be supplied when using "pw_method = local"}
+\item{pw_prompt}{Specifies how the user supplies the database password, TRUE means a prompt will appear, FALSE means the user will supply the password directly}
 }
 \description{
 This function connects to the NORM-VET database and merges data in the correct format. Here, all data, including MIC values are imported. Users will have to supply their password to the database manually when running the function.
