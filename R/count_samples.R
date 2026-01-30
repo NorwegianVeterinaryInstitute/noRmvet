@@ -18,7 +18,21 @@ count_samples <- function(data,
   if (salmonella == FALSE) {
 
     df <- data %>%
+      select(
+        -c(
+          materialenavn,
+          cut_off_gruppe,
+          cut_off,substans,
+          analyttkode_gruppe,
+          MIC,phenotype,
+          plate_def,
+          panel,
+          range_min,
+          range_max
+        )
+      ) %>%
       filter(resultat != "Undersøkt") %>%
+      distinct() %>%
       select(
         report_year,
         art_gruppe,
@@ -36,8 +50,24 @@ count_samples <- function(data,
 
     df <- data %>%
       select(
+        -c(
+          materialenavn,
+          cut_off_gruppe,
+          cut_off,substans,
+          analyttkode_gruppe,
+          MIC,phenotype,
+          plate_def,
+          panel,
+          range_min,
+          range_max
+        )
+      ) %>%
+      filter(resultat != "Undersøkt") %>%
+      distinct() %>%
+      select(
         report_year,
         art_gruppe,
+        mat_gruppe,
         bakterie_gruppe,
         bakterie_kategori,
         resultat
@@ -48,7 +78,6 @@ count_samples <- function(data,
       group_by_all() %>%
       count() %>%
       ungroup()
-
   }
 
   if (!is.null(year)) {
