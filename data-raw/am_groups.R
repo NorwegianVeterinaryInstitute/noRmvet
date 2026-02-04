@@ -6,15 +6,18 @@ library(odbc)
 library(dplyr)
 library(stringr)
 
+usr <- getPass()
 pw <- getPass()
+server <- getPass()
+database <- getPass()
 
 # Connect to database
 con <- dbConnect(
   odbc::odbc(),
   Driver = "SQL Server",
-  Server = "sqlpjstest01",
-  Database = "normvet",
-  UID = "normvet",
+  Server = server,
+  Database = database,
+  UID = usr,
   PWD = pw
 )
 
