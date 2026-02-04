@@ -21,14 +21,14 @@ plot_resistance_occurrence <- function(data,
                                        species_group = NULL,
                                        reporting_year = NULL) {
 
-  filtered_data <- filter_nv_data(data,
-                                  bacteria_category = bacteria_category,
-                                  material_group = material_group,
-                                  bacteria_group = bacteria_group,
-                                  species_group = species_group,
-                                  reporting_year = reporting_year)
-
-  plot_data <- calculate_res_occurrence(filtered_data)
+  plot_data <- calculate_res_occurrence(
+    data,
+    bacteria_category = bacteria_category,
+    material_group = material_group,
+    bacteria_group = bacteria_group,
+    species_group = species_group,
+    reporting_year = reporting_year
+  )
 
   palette <- list_palettes(group = "species")
 

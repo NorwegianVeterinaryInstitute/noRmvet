@@ -50,7 +50,10 @@ update_analyte_sens_group <- function(server,
       "080186",
       "080187",
       "080188",
-      "08011501"
+      "08011501",
+      "080198",
+      "080197",
+      "080196"
     )
   ) %>%
     mutate(
@@ -66,6 +69,9 @@ update_analyte_sens_group <- function(server,
         analyttkode_sens == "080187" ~ "Doksysyklin",
         analyttkode_sens == "080188" ~ "Pradofloksacin",
         analyttkode_sens == "08011501" ~ "Sulfametoksasol",
+        analyttkode_sens == "080198" ~ "Klaritromycin",
+        analyttkode_sens == "080197" ~ "Gamitromycin",
+        analyttkode_sens == "080196" ~ "Metronidazol",
         TRUE ~ NA_character_
       )
     ) %>%
@@ -78,6 +84,9 @@ update_analyte_sens_group <- function(server,
       analyttkode_sens == "080187" ~ "Tetracyclines",
       analyttkode_sens == "080188" ~ "Quinolones",
       analyttkode_sens == "08011501" ~ "Sulfonamides and Trimethoprims",
+      analyttkode_sens == "080198" ~ "Makrolider/Linkosamider",
+      analyttkode_sens == "080197" ~ "Makrolider/Linkosamider",
+      analyttkode_sens == "080196" ~ "Metronidazol*",
       TRUE ~ substans
     ))
 
