@@ -3,9 +3,8 @@
 #' Calculate multi-drug resistance, i.e. how many classes of antibiotics there are resistance against
 #'
 #' @param data The data holding the MIC values and sample information
-#' @param type Which level of reporting, leave empty for overall MDR, and "am_groups" for percent distribution of each antimicrobial group per MDR category
-#' @param keep_all Were all columns kept in the filter_nv_data function? If so, set this to TRUE
-#' @param group Either "animal" or "food", specify food if calculating MDR for food items
+#' @param substance_dist TRUE/FALSE, default FALSE, Which level of reporting, set to TRUE for percent distribution of each antimicrobial group per MDR category
+#' @param food Set to TRUE if calculating MDR for food items
 #'
 #' @author Håkon Kaspersen, \email{hakon.kaspersen@@vetinst.no}
 #'
@@ -13,25 +12,14 @@
 #' @import dplyr
 #' @importFrom tidyr pivot_wider
 #'
-calculate_mdr <- function(data,
-                          type = "general",
-                          keep_all = NULL,
-                          group = "animal") {
+calc_mdr <- function(data,
+                     substance_dist = FALSE,
+                     food = FALSE) {
 
   cols <- c(Resistant=NA_real_,Sensitive = NA_real_)
 
-  if (is.null(keep_all)) {
-    am_data <- data %>%
-      select(-MIC) %>%
-      left_join(am_groups, by = "substans")
-  } else {
-    am_data <- data %>%
-      select(-MIC) %>%
-      left_join(am_groups, by = c("substans", "analyttkode_gruppe"))
-  }
-
-  if (group == "animal") {
-    corrected_data <- am_data %>%
+  if (!isTRUE(food)) {
+    corrected_data <- data %>%
       filter(phenotype != "ND",
              substans != "Narasin") %>%
       group_by(aar,
@@ -62,7 +50,7 @@ calculate_mdr <- function(data,
                .keep_all = TRUE) %>%
       ungroup()
 
-    if (type == "am_groups") {
+    if (isTRUE(substance_dist)) {
       corrected_data %>%
         select(-c(substans,phenotype)) %>%
         group_by(aar,
@@ -99,7 +87,7 @@ calculate_mdr <- function(data,
         mutate(lwr = round(get_binCI(n, total)[1],2),
                upr = round(get_binCI(n, total)[2],2)) %>%
         ungroup()
-    } else if (type == "general") {
+    } else if (!isTRUE(substance_dist)) {
       corrected_data %>%
         group_by(
           aar,
@@ -146,8 +134,8 @@ calculate_mdr <- function(data,
         mutate(Percent = round(n / Total * 100, 3)) %>%
         arrange(report_year,-Percent)
     }
-  } else if (group == "food") {
-    corrected_data <- am_data %>%
+  } else if (isTRUE(food)) {
+    corrected_data <- data %>%
       filter(phenotype != "ND",
              substans != "Narasin") %>%
       group_by(aar,
@@ -178,7 +166,7 @@ calculate_mdr <- function(data,
                .keep_all = TRUE) %>%
       ungroup()
 
-    if (type == "am_groups") {
+    if (isTRUE(substance_dist)) {
       corrected_data %>%
         select(-c(substans,phenotype)) %>%
         group_by(aar,
@@ -215,7 +203,7 @@ calculate_mdr <- function(data,
         mutate(lwr = round(get_binCI(n, total)[1],2),
                upr = round(get_binCI(n, total)[2],2)) %>%
         ungroup()
-    } else if (type == "general") {
+    } else if (!isTRUE(substance_dist)) {
       corrected_data %>%
         group_by(
           aar,
