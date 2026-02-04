@@ -18,7 +18,7 @@ create_micdist(
 
 \item{bacteria_category}{Bacterial category to filter on}
 
-\item{material_group}{Material group to filter on, leave blank for summarising across material groups}
+\item{material_group}{Material group to filter on, leave blank for summarizing across material groups}
 
 \item{bacteria_group}{Bacteria group to filter on}
 
