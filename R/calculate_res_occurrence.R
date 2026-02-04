@@ -3,8 +3,11 @@
 #' Calculate resistance occurrence and confidence intervals on a substance level.
 #'
 #' @param data The data holding the MIC values and sample information
-#' @param material_summary Use "all" for summarising across material groups, use "single" for summarising for each separate material
-#' @param species_summary Use "all" for summarising across all species groups, use "single" for summarising for each separate species
+#' @param bacteria_category Bacterial category to filter on
+#' @param material_group Material group to filter on
+#' @param bacteria_group Bacteria group to filter on
+#' @param species_group Animal species to filter on
+#' @param reporting_year Report year to filter on
 #'
 #' @author Håkon Kaspersen, \email{hakon.kaspersen@@vetinst.no}
 #'
@@ -14,117 +17,26 @@
 #' @importFrom tibble add_column
 #'
 calculate_res_occurrence <- function(data,
-                                     material_summary = "single",
-                                     species_summary = "single") {
+                                     bacteria_category = NULL,
+                                     material_group = NULL,
+                                     bacteria_group = NULL,
+                                     species_group = NULL,
+                                     reporting_year = NULL) {
 
-  cols <- c(Resistant=NA_real_,Sensitive = NA_real_,ND = NA_real_)
+  filtered_data <- filter_nv_data(
+    data,
+    bacteria_category = bacteria_category,
+    material_group = material_group,
+    bacteria_group = bacteria_group,
+    species_group = species_group,
+    reporting_year = reporting_year
+  )
 
-  if (material_summary == "single" & species_summary == "single") {
-    data %>%
-      select(report_year,
-             art_gruppe,
-             mat_gruppe,
-             bakterie_gruppe,
-             bakterie_kategori,
-             substans,
-             phenotype) %>%
-      group_by_all() %>%
-      count() %>%
-      ungroup() %>%
-      filter(!is.na(phenotype)) %>%
-      pivot_wider(names_from = "phenotype",
-                  values_from = "n",
-                  values_fill = 0) %>%
-      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
-      mutate_at(c("Resistant","Sensitive"),
-                ~replace_na(., 0)) %>%
-      rowwise() %>%
-      mutate(Total = Sensitive + Resistant,
-             Percent = round(Resistant / Total * 100, 2),
-             lwr = round(get_binCI(Resistant, Total)[1],2),
-             upr = round(get_binCI(Resistant, Total)[2],2)) %>%
-      select(-c(Resistant,Sensitive)) %>%
-      mutate(Total = ifelse(!is.na(ND) & ND > 0, ND, Total)) %>%
-      select(-ND)
-
-  } else if (material_summary == "single" & species_summary == "all") {
-    data %>%
-      select(report_year,
-             mat_gruppe,
-             bakterie_gruppe,
-             bakterie_kategori,
-             substans,
-             phenotype) %>%
-      group_by_all() %>%
-      count() %>%
-      ungroup() %>%
-      filter(!is.na(phenotype)) %>%
-      pivot_wider(names_from = "phenotype",
-                  values_from = "n",
-                  values_fill = 0) %>%
-      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
-      mutate_at(c("Resistant","Sensitive"),
-                ~replace_na(., 0)) %>%
-      rowwise() %>%
-      mutate(Total = Sensitive + Resistant,
-             Percent = round(Resistant / Total * 100, 2),
-             lwr = round(get_binCI(Resistant, Total)[1],2),
-             upr = round(get_binCI(Resistant, Total)[2],2)) %>%
-      select(-c(Resistant,Sensitive)) %>%
-      mutate(Total = ifelse(!is.na(ND) & ND > 0, ND, Total)) %>%
-      select(-ND)
-
-  } else if (material_summary == "all" & species_summary == "single") {
-    data %>%
-      select(report_year,
-             art_gruppe,
-             bakterie_gruppe,
-             bakterie_kategori,
-             substans,
-             phenotype) %>%
-      group_by_all() %>%
-      count() %>%
-      ungroup() %>%
-      filter(!is.na(phenotype)) %>%
-      pivot_wider(names_from = "phenotype",
-                  values_from = "n",
-                  values_fill = 0) %>%
-      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
-      mutate_at(c("Resistant","Sensitive"),
-                ~replace_na(., 0)) %>%
-      rowwise() %>%
-      mutate(Total = Sensitive + Resistant,
-             Percent = round(Resistant / Total * 100, 2),
-             lwr = round(get_binCI(Resistant, Total)[1],2),
-             upr = round(get_binCI(Resistant, Total)[2],2)) %>%
-      select(-c(Resistant,Sensitive)) %>%
-      mutate(Total = ifelse(!is.na(ND) & ND > 0, ND, Total)) %>%
-      select(-ND)
-
-  } else if (material_summary == "all" & species_summary == "all") {
-    data %>%
-      select(report_year,
-             bakterie_gruppe,
-             bakterie_kategori,
-             substans,
-             phenotype) %>%
-      group_by_all() %>%
-      count() %>%
-      ungroup() %>%
-      filter(!is.na(phenotype)) %>%
-      pivot_wider(names_from = "phenotype",
-                  values_from = "n",
-                  values_fill = 0) %>%
-      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
-      mutate_at(c("Resistant","Sensitive"),
-                ~replace_na(., 0)) %>%
-      rowwise() %>%
-      mutate(Total = Sensitive + Resistant,
-             Percent = round(Resistant / Total * 100, 2),
-             lwr = round(get_binCI(Resistant, Total)[1],2),
-             upr = round(get_binCI(Resistant, Total)[2],2)) %>%
-      select(-c(Resistant,Sensitive)) %>%
-      mutate(Total = ifelse(!is.na(ND) & ND > 0, ND, Total)) %>%
-      select(-ND)
+  if (is.null(material_group) & !is.null(species_group)) {
+    res_calc(filtered_data, material_summary = "all")
+  } else if (!is.null(material_group) & is.null(species_group)) {
+    res_calc(filtered_data, material_summary = "food")
+  } else if (!is.null(material_group) & !is.null(species_group)) {
+    res_calc(filtered_data, material_summary = "single")
   }
 }

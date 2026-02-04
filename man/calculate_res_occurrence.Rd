@@ -6,16 +6,25 @@
 \usage{
 calculate_res_occurrence(
   data,
-  material_summary = "single",
-  species_summary = "single"
+  bacteria_category = NULL,
+  material_group = NULL,
+  bacteria_group = NULL,
+  species_group = NULL,
+  reporting_year = NULL
 )
 }
 \arguments{
 \item{data}{The data holding the MIC values and sample information}
 
-\item{material_summary}{Use "all" for summarising across material groups, use "single" for summarising for each separate material}
+\item{bacteria_category}{Bacterial category to filter on}
 
-\item{species_summary}{Use "all" for summarising across all species groups, use "single" for summarising for each separate species}
+\item{material_group}{Material group to filter on}
+
+\item{bacteria_group}{Bacteria group to filter on}
+
+\item{species_group}{Animal species to filter on}
+
+\item{reporting_year}{Report year to filter on}
 }
 \description{
 Calculate resistance occurrence and confidence intervals on a substance level.
