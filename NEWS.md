@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.1...noRmvet-v1.0.2) (2026-02-04)
+
+
+### Bug Fixes
+
+* added new codes for klaritromycin, gamitromycin, and metronidazol ([#24](https://github.com/NorwegianVeterinaryInstitute/noRmvet/issues/24)) ([e6421ba](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/e6421ba282af7cb78a94e29339ec3efdaf5da62d))
+* corrected how the user/server/database names are provided to the script ([#23](https://github.com/NorwegianVeterinaryInstitute/noRmvet/issues/23)) ([008b201](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/008b20173f281313978a23c26ce364b16fd8812c))
+
 ## [1.0.1](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.0...noRmvet-v1.0.1) (2026-01-30)
 
 

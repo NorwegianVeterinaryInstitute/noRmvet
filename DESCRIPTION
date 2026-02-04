@@ -1,7 +1,7 @@
 Package: noRmvet
 Type: Package
 Title: R Package For Connecting And Handling Data From The NORM-VET Database
-Version: 1.0.1
+Version: 1.0.2
 Author: Håkon Kaspersen
 Maintainer: Håkon Kaspersen <hakon.kaspersen@vetinst.no>
 Description: Provides functions for correctly fetching and handling data from the NORM-VET database.
