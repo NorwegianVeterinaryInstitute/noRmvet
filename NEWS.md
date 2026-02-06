@@ -1,3 +1,11 @@
+## [1.0.3](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.2...noRmvet-v1.0.3) (2026-02-06)
+
+
+### Bug Fixes
+
+* corrected to one decimal point for percentages ([695d9f3](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/695d9f304ce9063b9aa4348f0b58765fd78ad980))
+* corrected to one decimal point for percentages ([2790292](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/279029278fbc213e7af66bfb2ec37710765007f2))
+
 ## [1.0.2](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.1...noRmvet-v1.0.2) (2026-02-04)
 
 
