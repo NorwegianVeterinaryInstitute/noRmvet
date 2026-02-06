@@ -39,9 +39,9 @@ calculate_res_occurrence_salmonella <- function(data,
                 ~replace_na(., 0)) %>%
       rowwise() %>%
       mutate(Total = Sensitive + Resistant,
-             Percent = round(Resistant / Total * 100, 2),
-             lwr = round(get_binCI(Resistant, Total)[1],2),
-             upr = round(get_binCI(Resistant, Total)[2],2)) %>%
+             Percent = round(Resistant / Total * 100, 1),
+             lwr = round(get_binCI(Resistant, Total)[1],1),
+             upr = round(get_binCI(Resistant, Total)[2],1)) %>%
       select(-c(Resistant,Sensitive)) %>%
       mutate(Total = ifelse(!is.na(ND) & ND > 0, ND, Total)) %>%
       select(-ND)
@@ -67,9 +67,9 @@ calculate_res_occurrence_salmonella <- function(data,
                 ~replace_na(., 0)) %>%
       rowwise() %>%
       mutate(Total = Sensitive + Resistant,
-             Percent = round(Resistant / Total * 100, 2),
-             lwr = round(get_binCI(Resistant, Total)[1],2),
-             upr = round(get_binCI(Resistant, Total)[2],2)) %>%
+             Percent = round(Resistant / Total * 100, 1),
+             lwr = round(get_binCI(Resistant, Total)[1],1),
+             upr = round(get_binCI(Resistant, Total)[2],1)) %>%
       select(-c(Resistant,Sensitive)) %>%
       mutate(Total = ifelse(!is.na(ND) & ND > 0, ND, Total)) %>%
       select(-ND)

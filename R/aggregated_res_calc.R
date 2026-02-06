@@ -154,7 +154,7 @@ aggregated_res_calc <- function(data,
               ~replace_na(., 0)) %>%
     rowwise() %>%
     mutate(Total = Sensitive + Resistant,
-           Percent = round(Resistant / Total * 100, 2)) %>%
+           Percent = round(Resistant / Total * 100, 1)) %>%
     ungroup() %>%
     select(-c(Resistant,Sensitive))
 }

@@ -42,7 +42,7 @@ create_micdist_salmonella <- function(data,
                substans) %>%
       mutate(total = sum(n)) %>%
       ungroup() %>%
-      mutate(percent = round(n / total * 100, 2)) %>%
+      mutate(percent = round(n / total * 100, 1)) %>%
       select(-c(n, total)) %>%
       arrange(MIC) %>%
       pivot_wider(names_from = "MIC",
@@ -75,7 +75,7 @@ create_micdist_salmonella <- function(data,
                substans) %>%
       mutate(total = sum(n)) %>%
       ungroup() %>%
-      mutate(percent = round(n / total * 100, 2)) %>%
+      mutate(percent = round(n / total * 100, 1)) %>%
       select(-c(n, total)) %>%
       arrange(MIC) %>%
       pivot_wider(names_from = "MIC",
