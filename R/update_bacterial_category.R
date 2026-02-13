@@ -63,18 +63,11 @@ update_bacterial_category <- function(server,
     reduce(db_tables, left_join, .init = .) %>%
     dplyr::mutate(
       bakterie_kategori = case_when(
-        substr(hensiktkode,1,2) =="07" ~ "Oppdrag",
+        substr(hensiktkode,1,2) == "07" ~ "Oppdrag",
         hensiktkode =="0100105048" ~ "Viktige",
-        metodekode =="020147" ~ "Viktige",
-        metodekode =="020161" ~ "Viktige",
-        metodekode =="020146" ~ "Viktige",
-        metodekode =="020145" ~ "Viktige",
-        metodekode =="020174" ~ "Viktige",
-        metodekode =="020177" ~ "Viktige",
-        metodekode =="020192" ~ "Viktige",
-        metodekode =="020197" ~ "Viktige",
-        metodekode =="020166" ~ "Viktige",
-        metodekode =="020175" ~ "Viktige",
+        metodekode %in% c("020147","020161","020146","020145","020174",
+                          "020177","020192","020197","020166","020175",
+                          "020172") ~ "Viktige",
         analyttkode=="14130301"  ~ "Viktige",
         substr(analyttkode, 1, 14) %in% c(
           "04060101050103",
@@ -101,8 +94,8 @@ update_bacterial_category <- function(server,
           substr(analyttkode, 1, 10) == "0406010105"  ~ "Klinisk",
         artkode %in% c("03100202001","03070101002") &
           analyttkode %in% c("0415010323","0415010302","0415010302") ~ "Klinisk",
-        report_year < "2022"  & analyttkode == "0415010302"   ~ "Klinisk",
-        !substr(hensiktkode, 1, 2) == "02" & analyttkode %in% c(
+        as.numeric(report_year) < 2022  & analyttkode == "0415010302"   ~ "Klinisk",
+        substr(hensiktkode, 1, 2) != "02" & analyttkode %in% c(
           "0415010332",
           "415010317"
         ) ~ "Klinisk",
@@ -124,8 +117,8 @@ update_bacterial_category <- function(server,
           "04150303070101") ~ "Viktige",
         substr(hensiktkode, 1, 5) == "10001" ~ "Klinisk",
         substr(hensiktkode, 1, 2) == "01" ~ "Klinisk",
-        !hensiktkode =="0200301002" |
-          !substr(hensiktkode,1,2) %in% c("01","04","06","08") &
+        (hensiktkode != "0200301002") |
+          !(substr(hensiktkode,1,2) %in% c("01","04","06","08")) &
           substr(analyttkode, 1, 10) %in% c(
             "0406010105",
             "0406010610",
