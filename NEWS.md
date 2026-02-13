@@ -1,3 +1,11 @@
+## [1.0.4](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.3...noRmvet-v1.0.4) (2026-02-13)
+
+
+### Bug Fixes
+
+* corrected bacterial category for carba to viktige ([e36da99](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/e36da99ef364f9665d71725608f09c51ebd21bd7))
+* corrected bacterial category for carba to viktige ([0c564d0](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/0c564d01d1ddc0cd9a919abd1b62bb68d739f103))
+
 ## [1.0.3](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.2...noRmvet-v1.0.3) (2026-02-06)
 
 
