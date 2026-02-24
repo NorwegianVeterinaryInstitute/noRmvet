@@ -19,8 +19,13 @@ cutoffs <- path %>%
          "kilde" = Kilde,
          "mo" = MO,
          "cut_off" = cutoff) %>%
-  mutate(cut_off = ifelse(
-    cut_off == "0.06", "0.064", cut_off
+  mutate(cut_off = case_when(
+    cut_off == "1.6E-2" ~ "0.016",
+    cut_off == "1.4999999999999999E-2" ~ "0.016",
+    cut_off == "0.064" ~ "0.06",
+    cut_off == "0.12" ~ "0.125",
+    cut_off == "0.015" ~ "0.016",
+    TRUE ~ cut_off
   ))
 
 cutoff_data <- cutoffs %>%
