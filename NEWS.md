@@ -1,3 +1,14 @@
+## [1.0.5](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.4...noRmvet-v1.0.5) (2026-02-25)
+
+
+### Bug Fixes
+
+* added correction step for MIC values ([43ed075](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/43ed0758dd86a8ecf0b07a9d0687f63285a122c1))
+* added ordered list for substances ([c226680](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/c226680a426dcbf87688f276c1fddaa008911ec0))
+* all columns now present in the micdist table ([2df52d1](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/2df52d137d9e582b7c2281c2c881649f7f68926f))
+* corrected ECOFF values to match changes in MIC values ([79ce9ff](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/79ce9ff14e376ee4ec06c0089923cd5db4b9884d))
+* corrected substance order and number of digits in 95% CI and percent in the micdist table ([86e0c83](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/86e0c83a1c70c3638431206fdd1426dcd1fb75f6))
+
 ## [1.0.4](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.3...noRmvet-v1.0.4) (2026-02-13)
 
 
