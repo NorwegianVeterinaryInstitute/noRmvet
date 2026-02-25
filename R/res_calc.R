@@ -38,9 +38,9 @@ res_calc <- function(data,
                 ~replace_na(., 0)) %>%
       rowwise() %>%
       mutate(Total = Sensitive + Resistant,
-             Percent = round(Resistant / Total * 100, 1),
-             lwr = round(get_binCI(Resistant, Total)[1],1),
-             upr = round(get_binCI(Resistant, Total)[2],1)) %>%
+             Percent = format(round(Resistant / Total * 100, 1), nsmall = 1),
+             lwr = format(round(get_binCI(Resistant, Total)[1],1), nsmall = 1),
+             upr = format(round(get_binCI(Resistant, Total)[2],1), nsmall = 1)) %>%
       select(-c(Resistant,Sensitive)) %>%
       mutate(Total = ifelse(!is.na(ND) & ND > 0, ND, Total)) %>%
       select(-ND)
@@ -65,9 +65,9 @@ res_calc <- function(data,
                 ~replace_na(., 0)) %>%
       rowwise() %>%
       mutate(Total = Sensitive + Resistant,
-             Percent = round(Resistant / Total * 100, 1),
-             lwr = round(get_binCI(Resistant, Total)[1],1),
-             upr = round(get_binCI(Resistant, Total)[2],1)) %>%
+             Percent = format(round(Resistant / Total * 100, 1), nsmall = 1),
+             lwr = format(round(get_binCI(Resistant, Total)[1],1), nsmall = 1),
+             upr = format(round(get_binCI(Resistant, Total)[2],1), nsmall = 1)) %>%
       select(-c(Resistant,Sensitive)) %>%
       mutate(Total = ifelse(!is.na(ND) & ND > 0, ND, Total)) %>%
       select(-ND)
@@ -92,9 +92,9 @@ res_calc <- function(data,
                 ~replace_na(., 0)) %>%
       rowwise() %>%
       mutate(Total = Sensitive + Resistant,
-             Percent = round(Resistant / Total * 100, 1),
-             lwr = round(get_binCI(Resistant, Total)[1],1),
-             upr = round(get_binCI(Resistant, Total)[2],1)) %>%
+             Percent = format(round(Resistant / Total * 100, 1), nsmall = 1),
+             lwr = format(round(get_binCI(Resistant, Total)[1],1), nsmall = 1),
+             upr = format(round(get_binCI(Resistant, Total)[2],1), nsmall = 1)) %>%
       select(-c(Resistant,Sensitive)) %>%
       mutate(Total = ifelse(!is.na(ND) & ND > 0, ND, Total)) %>%
       select(-ND)

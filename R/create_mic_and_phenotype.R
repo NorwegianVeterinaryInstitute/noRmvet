@@ -22,6 +22,20 @@ create_mic_and_phenotype <- function(data, retain_plate2 = FALSE) {
       "substans"
     )) %>%
     mutate(verdi_mengde = sub(",", "\\.", verdi_mengde),
+           # Correct MIC values
+           verdi_mengde = case_when(
+             verdi_mengde == "0.015" ~ "0.016",
+             verdi_mengde == "0.064" ~ "0.06",
+             verdi_mengde == ".5" ~ "0.5",
+             verdi_mengde == ".12" ~ "0.125",
+             verdi_mengde == ".125" ~ "0.125",
+             verdi_mengde == "0.120" ~ "0.125",
+             verdi_mengde == "0.12" ~ "0.125",
+             verdi_mengde == ".25" ~ "0.25",
+             verdi_mengde == ".06" ~ "0.06",
+             verdi_mengde == ".03" ~ "0.03",
+             TRUE ~ verdi_mengde
+           ),
            verdi_mengde = as.numeric(verdi_mengde),
            cut_off = as.numeric(cut_off)) %>%
     mutate(

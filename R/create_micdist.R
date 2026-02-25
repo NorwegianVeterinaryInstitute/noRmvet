@@ -43,6 +43,29 @@ create_micdist <- function(data,
     reporting_year = reporting_year
   )
 
+  # Define columns
+  cols <- c(
+    "0.008" = NA_real_,
+    "0.016" = NA_real_,
+    "0.03" = NA_real_,
+    "0.06" = NA_real_,
+    "0.125" = NA_real_,
+    "0.25" = NA_real_,
+    "0.5" = NA_real_,
+    "1" = NA_real_,
+    "2" = NA_real_,
+    "4" = NA_real_,
+    "8" = NA_real_,
+    "16" = NA_real_,
+    "32" = NA_real_,
+    "64" = NA_real_,
+    "128" = NA_real_,
+    "256" = NA_real_,
+    "512" = NA_real_,
+    "1024" = NA_real_,
+    "2048" = NA_real_
+  )
+
   # No material group, but species group
   if (is.null(material_group) & !is.null(species_group)) {
     micdist <- filtered_data %>%
@@ -60,7 +83,11 @@ create_micdist <- function(data,
       arrange(MIC) %>%
       pivot_wider(names_from = "MIC",
                   values_from = "percent") %>%
-      arrange(art_gruppe, substans)
+      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
+      select(
+        1:5,
+        all_of(names(cols))[names(cols) %in% names(.)]
+      )
 
     calculate_res_occurrence(
       data,
@@ -81,7 +108,10 @@ create_micdist <- function(data,
           "bakterie_kategori",
           "substans"
         )
-      )
+      ) %>%
+      mutate(substans = factor(substans, levels = substance_order)) %>%
+      arrange(art_gruppe, substans)
+
     # No species group, but material group
   } else if (!is.null(material_group) & is.null(species_group)) {
     micdist <- filtered_data %>%
@@ -99,7 +129,11 @@ create_micdist <- function(data,
       arrange(MIC) %>%
       pivot_wider(names_from = "MIC",
                   values_from = "percent") %>%
-      arrange(mat_gruppe, substans)
+      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
+      select(
+        1:5,
+        all_of(names(cols))[names(cols) %in% names(.)]
+      )
 
     calculate_res_occurrence(
       data,
@@ -120,7 +154,10 @@ create_micdist <- function(data,
           "bakterie_kategori",
           "substans"
         )
-      )
+      ) %>%
+      mutate(substans = factor(substans, levels = substance_order)) %>%
+      arrange(mat_gruppe, substans)
+
     # Both species group and material group
   } else if (!is.null(material_group) & !is.null(species_group)) {
     micdist <- filtered_data %>%
@@ -139,7 +176,11 @@ create_micdist <- function(data,
       arrange(MIC) %>%
       pivot_wider(names_from = "MIC",
                   values_from = "percent") %>%
-      arrange(art_gruppe, mat_gruppe, substans)
+      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
+      select(
+        1:6,
+        all_of(names(cols))[names(cols) %in% names(.)]
+      )
 
     calculate_res_occurrence(
       data,
@@ -161,6 +202,8 @@ create_micdist <- function(data,
           "bakterie_kategori",
           "substans"
         )
-      )
+      ) %>%
+      mutate(substans = factor(substans, levels = substance_order)) %>%
+      arrange(art_gruppe, mat_gruppe, substans)
   }
 }
