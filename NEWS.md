@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.5...noRmvet-v1.0.6) (2026-02-25)
+
+
+### Bug Fixes
+
+* corrected how the occurrence was calculated with retain_plate2 = TRUE ([6df8667](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/6df866754ad11ebfdb00e8d3f7ef71cb91be5f0b))
+
 ## [1.0.5](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.4...noRmvet-v1.0.5) (2026-02-25)
 
 
