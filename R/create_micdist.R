@@ -75,99 +75,7 @@ create_micdist <- function(data,
       group_by(art_gruppe,
                bakterie_gruppe,
                bakterie_kategori,
-               substans) %>%
-      mutate(total = sum(n)) %>%
-      ungroup() %>%
-      mutate(percent = round(n / total * 100, 1)) %>%
-      select(-c(n, total)) %>%
-      arrange(MIC) %>%
-      pivot_wider(names_from = "MIC",
-                  values_from = "percent") %>%
-      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
-      select(
-        1:5,
-        all_of(names(cols))[names(cols) %in% names(.)]
-      )
-
-    calculate_res_occurrence(
-      data,
-      bacteria_category = bacteria_category,
-      material_group = material_group,
-      bacteria_group = bacteria_group,
-      species_group = species_group,
-      reporting_year = reporting_year
-    ) %>%
-      mutate(CI = paste0("[", lwr, "-", upr, "]")) %>%
-      select(-c(lwr, upr)) %>%
-      left_join(
-        micdist,
-        by = c(
-          "report_year",
-          "art_gruppe",
-          "bakterie_gruppe",
-          "bakterie_kategori",
-          "substans"
-        )
-      ) %>%
-      mutate(substans = factor(substans, levels = substance_order)) %>%
-      arrange(art_gruppe, substans)
-
-    # No species group, but material group
-  } else if (!is.null(material_group) & is.null(species_group)) {
-    micdist <- filtered_data %>%
-      select(-c(phenotype,salmonella_materiale,art_gruppe)) %>%
-      group_by_all() %>%
-      count() %>%
-      group_by(mat_gruppe,
-               bakterie_gruppe,
-               bakterie_kategori,
-               substans) %>%
-      mutate(total = sum(n)) %>%
-      ungroup() %>%
-      mutate(percent = round(n / total * 100, 1)) %>%
-      select(-c(n, total)) %>%
-      arrange(MIC) %>%
-      pivot_wider(names_from = "MIC",
-                  values_from = "percent") %>%
-      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
-      select(
-        1:5,
-        all_of(names(cols))[names(cols) %in% names(.)]
-      )
-
-    calculate_res_occurrence(
-      data,
-      bacteria_category = bacteria_category,
-      material_group = material_group,
-      bacteria_group = bacteria_group,
-      species_group = species_group,
-      reporting_year = reporting_year
-    ) %>%
-      mutate(CI = paste0("[", lwr, "-", upr, "]")) %>%
-      select(-c(lwr, upr)) %>%
-      left_join(
-        micdist,
-        by = c(
-          "report_year",
-          "mat_gruppe",
-          "bakterie_gruppe",
-          "bakterie_kategori",
-          "substans"
-        )
-      ) %>%
-      mutate(substans = factor(substans, levels = substance_order)) %>%
-      arrange(mat_gruppe, substans)
-
-    # Both species group and material group
-  } else if (!is.null(material_group) & !is.null(species_group)) {
-    micdist <- filtered_data %>%
-      select(-c(phenotype,salmonella_materiale)) %>%
-      group_by_all() %>%
-      count() %>%
-      group_by(art_gruppe,
-               mat_gruppe,
-               bakterie_gruppe,
-               bakterie_kategori,
+               panel,
                substans) %>%
       mutate(total = sum(n)) %>%
       ungroup() %>%
@@ -197,13 +105,111 @@ create_micdist <- function(data,
         by = c(
           "report_year",
           "art_gruppe",
-          "mat_gruppe",
           "bakterie_gruppe",
           "bakterie_kategori",
+          "panel",
           "substans"
         )
       ) %>%
       mutate(substans = factor(substans, levels = substance_order)) %>%
-      arrange(art_gruppe, mat_gruppe, substans)
+      arrange(art_gruppe, panel, substans)
+
+    # No species group, but material group
+  } else if (!is.null(material_group) & is.null(species_group)) {
+    micdist <- filtered_data %>%
+      select(-c(phenotype,salmonella_materiale,art_gruppe)) %>%
+      group_by_all() %>%
+      count() %>%
+      group_by(mat_gruppe,
+               bakterie_gruppe,
+               bakterie_kategori,
+               panel,
+               substans) %>%
+      mutate(total = sum(n)) %>%
+      ungroup() %>%
+      mutate(percent = round(n / total * 100, 1)) %>%
+      select(-c(n, total)) %>%
+      arrange(MIC) %>%
+      pivot_wider(names_from = "MIC",
+                  values_from = "percent") %>%
+      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
+      select(
+        1:6,
+        all_of(names(cols))[names(cols) %in% names(.)]
+      )
+
+    calculate_res_occurrence(
+      data,
+      bacteria_category = bacteria_category,
+      material_group = material_group,
+      bacteria_group = bacteria_group,
+      species_group = species_group,
+      reporting_year = reporting_year
+    ) %>%
+      mutate(CI = paste0("[", lwr, "-", upr, "]")) %>%
+      select(-c(lwr, upr)) %>%
+      left_join(
+        micdist,
+        by = c(
+          "report_year",
+          "mat_gruppe",
+          "bakterie_gruppe",
+          "bakterie_kategori",
+          "panel",
+          "substans"
+        )
+      ) %>%
+      mutate(substans = factor(substans, levels = substance_order)) %>%
+      arrange(mat_gruppe, panel, substans)
+
+    # Both species group and material group
+  } else if (!is.null(material_group) & !is.null(species_group)) {
+    micdist <- filtered_data %>%
+      select(-c(phenotype,salmonella_materiale)) %>%
+      group_by_all() %>%
+      count() %>%
+      group_by(art_gruppe,
+               mat_gruppe,
+               bakterie_gruppe,
+               bakterie_kategori,
+               panel,
+               substans) %>%
+      mutate(total = sum(n)) %>%
+      ungroup() %>%
+      mutate(percent = round(n / total * 100, 1)) %>%
+      select(-c(n, total)) %>%
+      arrange(MIC) %>%
+      pivot_wider(names_from = "MIC",
+                  values_from = "percent") %>%
+      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
+      select(
+        1:7,
+        all_of(names(cols))[names(cols) %in% names(.)]
+      )
+
+    calculate_res_occurrence(
+      data,
+      bacteria_category = bacteria_category,
+      material_group = material_group,
+      bacteria_group = bacteria_group,
+      species_group = species_group,
+      reporting_year = reporting_year
+    ) %>%
+      mutate(CI = paste0("[", lwr, "-", upr, "]")) %>%
+      select(-c(lwr, upr)) %>%
+      left_join(
+        micdist,
+        by = c(
+          "report_year",
+          "art_gruppe",
+          "mat_gruppe",
+          "bakterie_gruppe",
+          "bakterie_kategori",
+          "panel",
+          "substans"
+        )
+      ) %>%
+      mutate(substans = factor(substans, levels = substance_order)) %>%
+      arrange(art_gruppe, mat_gruppe, panel, substans)
   }
 }
