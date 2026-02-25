@@ -24,6 +24,7 @@ res_calc <- function(data,
              mat_gruppe,
              bakterie_gruppe,
              bakterie_kategori,
+             panel,
              substans,
              phenotype) %>%
       group_by_all() %>%
@@ -51,6 +52,7 @@ res_calc <- function(data,
              art_gruppe,
              bakterie_gruppe,
              bakterie_kategori,
+             panel,
              substans,
              phenotype) %>%
       group_by_all() %>%
@@ -78,6 +80,7 @@ res_calc <- function(data,
              report_year,
              bakterie_gruppe,
              bakterie_kategori,
+             panel,
              substans,
              phenotype) %>%
       group_by_all() %>%

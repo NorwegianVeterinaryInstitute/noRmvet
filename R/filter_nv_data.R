@@ -41,6 +41,7 @@ filter_nv_data <- function(data,
                  bakterie_gruppe,
                  bakterie_kategori,
                  MIC,
+                 panel,
                  substans,
                  phenotype)
       } else {
@@ -71,6 +72,7 @@ filter_nv_data <- function(data,
                  bakterie_gruppe,
                  bakterie_kategori,
                  MIC,
+                 panel,
                  substans,
                  phenotype)
       } else {
@@ -104,6 +106,7 @@ filter_nv_data <- function(data,
                  bakterie_gruppe,
                  bakterie_kategori,
                  MIC,
+                 panel,
                  substans,
                  phenotype)
       } else {
@@ -136,6 +139,7 @@ filter_nv_data <- function(data,
                  bakterie_gruppe,
                  bakterie_kategori,
                  MIC,
+                 panel,
                  substans,
                  phenotype)
       } else {
