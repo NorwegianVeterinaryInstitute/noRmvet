@@ -87,8 +87,7 @@ create_micdist <- function(data,
       select(
         1:5,
         all_of(names(cols))[names(cols) %in% names(.)]
-      ) %>%
-      arrange(art_gruppe, substans)
+      )
 
     calculate_res_occurrence(
       data,
@@ -109,7 +108,10 @@ create_micdist <- function(data,
           "bakterie_kategori",
           "substans"
         )
-      )
+      ) %>%
+      mutate(substans = factor(substans, levels = substance_order)) %>%
+      arrange(art_gruppe, substans)
+
     # No species group, but material group
   } else if (!is.null(material_group) & is.null(species_group)) {
     micdist <- filtered_data %>%
@@ -131,8 +133,7 @@ create_micdist <- function(data,
       select(
         1:5,
         all_of(names(cols))[names(cols) %in% names(.)]
-      ) %>%
-      arrange(mat_gruppe, substans)
+      )
 
     calculate_res_occurrence(
       data,
@@ -153,7 +154,10 @@ create_micdist <- function(data,
           "bakterie_kategori",
           "substans"
         )
-      )
+      ) %>%
+      mutate(substans = factor(substans, levels = substance_order)) %>%
+      arrange(mat_gruppe, substans)
+
     # Both species group and material group
   } else if (!is.null(material_group) & !is.null(species_group)) {
     micdist <- filtered_data %>%
@@ -176,8 +180,7 @@ create_micdist <- function(data,
       select(
         1:6,
         all_of(names(cols))[names(cols) %in% names(.)]
-      ) %>%
-      arrange(art_gruppe, mat_gruppe, substans)
+      )
 
     calculate_res_occurrence(
       data,
@@ -199,6 +202,8 @@ create_micdist <- function(data,
           "bakterie_kategori",
           "substans"
         )
-      )
+      ) %>%
+      mutate(substans = factor(substans, levels = substance_order)) %>%
+      arrange(art_gruppe, mat_gruppe, substans)
   }
 }
