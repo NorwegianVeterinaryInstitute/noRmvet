@@ -148,6 +148,11 @@ update_bacterial_category <- function(server,
                                           "0415010332") ~ "Klinisk",
         substr(analyttkode, 1, 12) == "04150103020201" ~ "Klinisk",
         analyttkode == "040601060401" ~ "Klinisk",
+        aar %in% c("2018","2019","2020","2021","2022","2023","2024","2025") &
+          substr(artkode, 1,11) == "03070104001" &
+          analyttkode == "0415010312" &
+          hensiktkode != "0200301" &
+          substr(hensiktkode, 1,2) != "09" ~ "Klinisk",
         TRUE ~ "Viktige"
       )
     ) %>%
