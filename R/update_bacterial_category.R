@@ -144,7 +144,6 @@ update_bacterial_category <- function(server,
         substr(analyttkode, 1, 10) %in% c("0415030202",
                                           "0406010504",
                                           "0406011101",
-                                          "0406030406",
                                           "0415010332") ~ "Klinisk",
         substr(analyttkode, 1, 12) == "04150103020201" ~ "Klinisk",
         analyttkode == "040601060401" ~ "Klinisk",
@@ -177,6 +176,25 @@ update_bacterial_category <- function(server,
       analyttkode == "020147" ~ "Indikator",
       substr(analyttkode, 1,2) == "07" ~ "Viktige",
       analyttkode == "0403010208" ~ "Klinisk",
+      # E.coli svin kliniske
+      substr(analyttkode, 1, 10) == "0406010105" &
+        substr(artkode, 1, 11) == "03100101001" &
+        hensiktkode != "0200301" &
+        aar %in% c("2020","2021","2022","2023","2024","2025") ~ "Klinisk",
+      # E.coli katt kliniske
+      substr(analyttkode, 1, 10) == "0406010105" &
+        substr(artkode, 1, 11) == "03070104001" &
+        hensiktkode != "0200301" &
+        aar %in% c("2018","2019","2020",
+                   "2021","2022","2023","2024","2025") ~ "Klinisk",
+      # S. felis katt kliniske
+      substr(analyttkode, 1, 10) == "0415010312" &
+        substr(artkode, 1, 11) == "03070104001" &
+        hensiktkode != "0200301" &
+        aar %in% c("2018","2019","2020",
+                   "2021","2022","2023","2024","2025") ~ "Klinisk",
+      substr(analyttkode, 1, 8) == "04060304" ~ "Klinisk",
+      substr(analyttkode, 1, 8) == "04430201" ~ "Klinisk",
       TRUE ~ bakterie_kategori
     )) %>%
     select(aar, analyttkode, hensiktkode, metodekode, artkode, bakterie_kategori) %>%

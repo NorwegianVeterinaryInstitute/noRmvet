@@ -177,6 +177,7 @@ update_report_year <- function(server,
         !substr(artkode, 1, 10) == "0509010200" &
         substr(analyttkode,1,10) == "0406010105"
       & pjs_year %in% c("2020","2021","2022") ~ "2023",
+      # E. coli svin, kliniske
       substr(hensiktkode,1,5) == "01001" &
         !substr(artkode, 1, 10) == "0509010200" &
         substr(analyttkode,1,10) == "0406010105"
@@ -199,19 +200,22 @@ update_report_year <- function(server,
         analyttkode == "0415010312" &
         hensiktkode != "0200301" &
         substr(hensiktkode, 1,2) != "09" ~ "2025",
+      # E. coli svin
       pjs_year %in% c("2018","2019","2020","2021","2022","2023","2024","2025") &
         substr(artkode, 1,11) == "03100101001" &
         analyttkode == "0406010105" &
         hensiktkode != "0200301" &
         substr(hensiktkode, 1,2) != "09" ~ "2025",
-      pjs_year %in% c("2021","2022","2023","2024","2025") &
+      # E. coli katt
+      pjs_year %in% c("2018","2019","2020","2021","2022","2023","2024","2025") &
         substr(artkode, 1,11) == "03070104001" &
         analyttkode == "0406010105" &
         hensiktkode != "0200301" &
         substr(hensiktkode, 1,2) != "09" ~ "2025",
+      # Actinobacillus svin
       pjs_year %in% c("2018","2019","2020","2021","2022","2023","2024","2025") &
         substr(artkode, 1,11) == "03100101001" &
-        substr(analyttkode, 1, 10) == "0406030406" &
+        substr(analyttkode, 1, 8) %in% c("04060304","04430201") &
         hensiktkode != "0200301" &
         substr(hensiktkode, 1,2) != "09" ~ "2025",
       TRUE ~ pjs_year
