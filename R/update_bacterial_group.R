@@ -79,7 +79,8 @@ update_bacterial_group <- function(server,
         substr(kode, 1, 8) %in% c("04060203") ~  "Aeromonas",
         substr(kode, 1, 8) %in% c("04060205") ~  "Moritella",
         substr(kode, 1, 8) %in% c("04060302") ~  "Pasteurella",
-        substr(kode, 1, 8) %in% c("04060304") ~  "Actinobacillus",
+        substr(kode, 1, 8) == "04060304" ~ "Actinobacillus",
+        substr(kode, 1, 8) == "04430201" ~ "Actinobacillus",
         kode == "0403010208" ~ "Campylobacter upsaliensis",
         TRUE ~ as.character(NA)
       )
@@ -129,19 +130,16 @@ update_bacterial_group <- function(server,
       "bakterie_gruppe" = gruppe
     )
 
-  comp <- old_table %>%
-    left_join(
-      RESULT_bacterial_group,
-      by = c(
-        "analyttkode",
-        "analyttnavn"
-      )
-    ) %>%
-    filter(bakterie_gruppe.x != bakterie_gruppe.y |
-             cut_off_gruppe.x != cut_off_gruppe.y)
+  only_in_old <- anti_join(old_table, RESULT_bacterial_group, by = names(old_table))
+  only_in_new <- anti_join(RESULT_bacterial_group, old_table, by = names(RESULT_bacterial_group))
+
+  differences <- bind_rows(
+    mutate(only_in_old, source = "only_in_old"),
+    mutate(only_in_new, source = "only_in_new")
+  )
 
   if (update == FALSE) {
-    if (nrow(comp) == 0) {
+    if (nrow(differences) == 0) {
       print("No differences detected, no update needed.")
     } else {
       print(
@@ -150,7 +148,7 @@ update_bacterial_group <- function(server,
       list(
         "old_data" = old_table,
         "new_data" = RESULT_bacterial_group,
-        "diff" = comp
+        "diff" = differences
       )
     }
   } else {

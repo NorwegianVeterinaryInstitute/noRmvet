@@ -72,8 +72,8 @@ fetch_nv_mic_data <- function(server = NULL,
   names(tables) <- table_list
 
   tables$sens_resultat <- rename(tables$sens_resultat,
-                                 "analyttkode_sens" = analyttkode) %>%
-      select(-kjennelsekode)
+                                 "analyttkode_sens" = analyttkode,
+                                 "kjennelsekode_sens" = kjennelsekode)
 
   print("Merging tables...")
 
