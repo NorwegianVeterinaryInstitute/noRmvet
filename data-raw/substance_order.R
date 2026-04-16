@@ -40,6 +40,8 @@ substance_order <- c(
   "Sulfametoksasol",
   "Sulfametoksasol/Trimetoprim",
   "Erytromycin",
+  "Klaritromycin",
+  "Gamitromycin",
   "Klindamycin",
   "Quinupristin/Dalfopristin",
   "Amikacin",
@@ -73,9 +75,11 @@ substance_order <- c(
   "Linezolid",
   "Daptomycin",
   "Mupirocin",
+  "Metronidazol",
   "Rifampicin",
   "Narasin",
   "Kolistin"
 )
+
 
 usethis::use_data(substance_order, overwrite = TRUE)
