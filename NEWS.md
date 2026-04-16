@@ -1,3 +1,19 @@
+## [1.1.0](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.6...noRmvet-v1.1.0) (2026-04-16)
+
+
+### Features
+
+* added kjennelsekode_sens variable to raw data ([7f271fc](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/7f271fc2f1e1d0d85cba10e22252f2d4c72a09fd))
+
+
+### Bug Fixes
+
+* added three substances: klarithromycin, metronidazol, and gamitromycin ([7002c65](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/7002c654e71a6ee890f5ada0373e6d64bbcefcea))
+* corrected clinical definition ([f158e72](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/f158e729c2749a874d4290bcfbc22dd15b5d5ed2))
+* corrected report year for APP swine 2025 ([cf19a3d](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/cf19a3df2f9b1ba68e6ddd2737d0fbcf783e0ab3))
+* updated report year definitions ([70612e9](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/70612e93c3f6943b82a9a3039df0ffe5a3dc7aaf))
+* updates to bacterial category and group, material group, and report year ([070e53b](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/070e53b46b3804d1b26f28a636d6d6bfe2682aa3))
+
 ## [1.0.6](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.5...noRmvet-v1.0.6) (2026-02-25)
 
 
