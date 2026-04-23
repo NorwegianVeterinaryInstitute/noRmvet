@@ -68,6 +68,12 @@ update_report_year <- function(server,
     # combinations of pjs_year, hensiktkode, and
     # analyttkode for each report_year
     mutate(report_year = case_when(
+      # E. coli katt
+      pjs_year %in% c("2018","2019","2020","2021","2022","2023","2024","2025") &
+        substr(artkode, 1,11) == "03070104001" &
+        analyttkode == "0406010105" &
+        hensiktkode != "0200301" &
+        substr(hensiktkode, 1,2) != "09" ~ "2025",
       # E.coli klinisk? /svin/
       hensiktkode == "0200301002" &
         substr(analyttkode, 1,10) == "0406010105" &
@@ -202,15 +208,10 @@ update_report_year <- function(server,
       pjs_year == "2005" &
         artkode == "03070101002" &
         hensiktkode == "0200301001" ~ "2004",
+      # S. felis katt
       pjs_year %in% c("2018","2019","2020","2021","2022","2023","2024","2025") &
         substr(artkode, 1,11) == "03070104001" &
         analyttkode == "0415010312" &
-        hensiktkode != "0200301" &
-        substr(hensiktkode, 1,2) != "09" ~ "2025",
-      # E. coli katt
-      pjs_year %in% c("2018","2019","2020","2021","2022","2023","2024","2025") &
-        substr(artkode, 1,11) == "03070104001" &
-        analyttkode == "0406010105" &
         hensiktkode != "0200301" &
         substr(hensiktkode, 1,2) != "09" ~ "2025",
       # Actinobacillus svin
