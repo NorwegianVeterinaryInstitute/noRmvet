@@ -1,3 +1,18 @@
+## [1.2.0](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.1.0...noRmvet-v1.2.0) (2026-05-04)
+
+
+### Features
+
+* added function for extracting gene data from raw data ([1105b5e](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/1105b5e80b3ef53a15e1509bcc9d5b05c5c05f84))
+* added gene data to database ([5c7f30f](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/5c7f30f5d6b72ce44cea4d25c7283b4cc39fb92d))
+
+
+### Bug Fixes
+
+* added plate definitions for campylobacter ([4b26e4c](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/4b26e4c8b324f82f3b910be03a995a20353e5277))
+* correction to nalidixic acid minimum range ([1fef5df](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/1fef5dfccb174e49779a11772ad2a4c15d1e46cf))
+* correction to report year definition for clinical E. coli in cats ([73afb1b](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/73afb1b60e679bce2e8d184026493d4972bf3d99))
+
 ## [1.1.0](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.0.6...noRmvet-v1.1.0) (2026-04-16)
 
 
