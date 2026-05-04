@@ -70,14 +70,32 @@ update_gene_data <- function(server,
           "AmpC-gen, blaCMY-2 - påvisning med PCR",
         metodekode_sens == "070248" ~
           "ampC-gen, oppregulert, kromosomalt - påvisning med PCR",
+        metodekode_sens == "070246" ~
+          "ESBL (bredspektret betalaktamase)-gen, CTX-M, SHV og TEM - påvisning med PCR",
         metodekode_sens == "070278" ~
           "Bakterier, helgenomsekvensering (GATC Biotech AG, Køln, Tyskland)",
         metodekode_sens == "070304" ~
           "Bakterier, helgenomsekvensering (Illumina MiSeq)",
+        metodekode_sens == "070218" ~
+          "Staphylococcus aureus spa-type - bestemmelse med PCR (St. Olavs Hospital)",
+        metodekode_sens == "070201" ~
+          "Meticillinresistensgen mecA og mecC - påvisning med PCR",
+        metodekode_sens == "070271" ~
+          "MCR-gen, kolistinresistensgener - påvisning med dupleks PCR for mcr-1 og mcr-2",
         TRUE ~ NA_character_
       ),
       gene_method = case_when(
-        metodekode_sens %in% c("070225","070264","070268","070282","070248") ~ "PCR",
+        metodekode_sens %in% c(
+          "070225",
+          "070264",
+          "070268",
+          "070282",
+          "070248",
+          "070271",
+          "070218",
+          "070201",
+          "070246"
+          ) ~ "PCR",
         metodekode_sens %in% c("070278","070304") ~ "WGS",
         TRUE ~ NA_character_
       ),
