@@ -2,6 +2,7 @@
 # code to prepare `panel_ranges` dataset goes here
 
 library(readxl)
+library(dplyr)
 
 input <- "//vetinst.no/dfs-felles/StasjonK/FAG/Provedata/Rapportering/NormVetUtvikling/Input_data/"
 path <- paste0(input, "panels_and_ranges.xlsx")

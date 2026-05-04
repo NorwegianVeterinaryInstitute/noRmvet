@@ -1,6 +1,6 @@
 #' @title panel_ranges
 #' @description Data frame holding the panels and ranges for all substances for each year and group
-#' @format A data frame with 1388 rows and 8 variables:
+#' @format A data frame with 1418 rows and 8 variables:
 #' \describe{
 #'   \item{\code{report_year}}{character COLUMN_DESCRIPTION}
 #'   \item{\code{bakterie_gruppe}}{character COLUMN_DESCRIPTION}
