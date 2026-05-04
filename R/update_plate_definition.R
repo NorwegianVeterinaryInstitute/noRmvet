@@ -289,6 +289,11 @@ update_plate_definition <- function(server,
           report_year == "2025" &
           bakterie_gruppe %in% c("Escherichia coli", "Karba") &
           metodekode_sens == "020185" ~ "plate2",
+        # Campylobacter coli, zoonotic
+        bakterie_kategori == "Zoonotisk" &
+          bakterie_gruppe == "Campylobacter coli" &
+          report_year %in% c("2021","2022","2023","2024","2025") &
+          metodekode_sens == "020148" ~ "plate1",
         TRUE ~ NA_character_
       )
     ) %>%
