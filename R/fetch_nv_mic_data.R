@@ -58,7 +58,8 @@ fetch_nv_mic_data <- function(server = NULL,
                  "analytt_sens_group",
                  "analytt_sens_cutoff",
                  "report_sampling_year",
-                 "plate_definitions")
+                 "plate_definitions",
+                 "gene_data")
 
   print("Extracting tables...")
 
