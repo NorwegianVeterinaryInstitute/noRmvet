@@ -208,6 +208,33 @@ update_plate_definition <- function(server,
           report_year == "2021" &
           bakterie_gruppe == "Escherichia coli" &
           metodekode_sens == "020185" ~ "plate2",
+
+
+        ## Viktige 2021
+        report_year == "2021" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Storfe" &
+          metodekode_sens == "020148" &
+          sens_undersokelsesnummer == "2" ~ "plate1",
+        report_year == "2021" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Storfe" &
+          metodekode_sens == "020185" &
+          sens_undersokelsesnummer == "1" ~ "plate2",
+        report_year == "2021" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Svin" &
+          metodekode_sens == "020148" &
+          sens_undersokelsesnummer %in% c("1","2") ~ "plate1",
+        report_year == "2021" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Svin" &
+          metodekode_sens == "020185" &
+          sens_undersokelsesnummer %in% c("1","2") ~ "plate2",
         # 2022
         bakterie_kategori == "Indikator" &
           report_year == "2022" &
@@ -255,6 +282,31 @@ update_plate_definition <- function(server,
           report_year == "2023" &
           bakterie_gruppe %in% c("Escherichia coli", "Karba") &
           metodekode_sens == "020185" ~ "plate2",
+        ## Viktige
+        report_year == "2023" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Storfe" &
+          metodekode_sens == "020148" &
+          sens_undersokelsesnummer == "1" ~ "plate1",
+        report_year == "2023" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Storfe" &
+          metodekode_sens == "020185" &
+          sens_undersokelsesnummer == "2" ~ "plate2",
+        report_year == "2023" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Svin" &
+          metodekode_sens == "020148" &
+          sens_undersokelsesnummer == "1" ~ "plate1",
+        report_year == "2023" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Svin" &
+          metodekode_sens == "020185" &
+          sens_undersokelsesnummer == "2" ~ "plate2",
         # 2024
         bakterie_kategori == "Indikator" &
           report_year == "2024" &
@@ -289,10 +341,40 @@ update_plate_definition <- function(server,
           report_year == "2025" &
           bakterie_gruppe %in% c("Escherichia coli", "Karba") &
           metodekode_sens == "020185" ~ "plate2",
-        # Campylobacter coli, zoonotic
+        ## Campylobacter coli, zoonotic
         bakterie_kategori == "Zoonotisk" &
-          bakterie_gruppe == "Campylobacter coli" &
+          bakterie_gruppe %in% c("Campylobacter coli","Campylobacter jejuni") &
           report_year %in% c("2021","2022","2023","2024","2025") &
+          metodekode_sens == "020148" ~ "plate1",
+        ## Viktige
+        report_year == "2025" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Storfe" &
+          metodekode_sens == "020148" &
+          sens_undersokelsesnummer == "1" ~ "plate1",
+        report_year == "2025" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Storfe" &
+          metodekode_sens == "020185" &
+          sens_undersokelsesnummer == "2" ~ "plate2",
+        report_year == "2025" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Svin" &
+          metodekode_sens == "020148" &
+          sens_undersokelsesnummer == "1" ~ "plate1",
+        report_year == "2025" &
+          bakterie_kategori == "Viktige" &
+          bakterie_gruppe == "ESBL" &
+          art_gruppe == "Svin" &
+          metodekode_sens == "020185" &
+          sens_undersokelsesnummer == "2" ~ "plate2",
+        ## Salmonella
+        report_year %in% c("2021","2022","2023","2024","2025") &
+          bakterie_kategori == "Zoonotisk" &
+          bakterie_gruppe == "Salmonella" &
           metodekode_sens == "020148" ~ "plate1",
         TRUE ~ NA_character_
       )
