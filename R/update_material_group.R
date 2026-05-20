@@ -199,19 +199,14 @@ update_material_group <- function(server,
     mutate(
       mat_gruppe = case_when(
         mat_gruppe == "Kjøtt" &
-          bakterie_kategori == "Indikator" &
           art_gruppe == "Høns" ~ "Kyllingkjøtt",
         mat_gruppe == "Kjøtt" &
-          bakterie_kategori == "Indikator" &
           art_gruppe == "Svin" ~ "Svinekjøtt",
         mat_gruppe == "Kjøtt" &
-          bakterie_kategori == "Indikator" &
           art_gruppe == "Storfe" ~ "Storfekjøtt",
         mat_gruppe == "Kjøtt" &
-          bakterie_kategori == "Indikator" &
           art_gruppe == "Sau" ~ "Sauekjøtt",
         mat_gruppe == "Kjøtt" &
-          bakterie_kategori == "Indikator" &
           art_gruppe == "Kalkun" ~ "Kalkunkjøtt",
         TRUE ~ mat_gruppe
       )
