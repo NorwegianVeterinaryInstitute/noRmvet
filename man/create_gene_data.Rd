@@ -4,7 +4,7 @@
 \alias{create_gene_data}
 \title{Fetch gene data from the raw NORM-VET data}
 \usage{
-create_gene_data(data)
+create_gene_data(data, year = NULL)
 }
 \arguments{
 \item{data}{The data frame from fetch_nv_data}
