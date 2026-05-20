@@ -15,75 +15,103 @@ count_samples <- function(data,
                           salmonella = FALSE,
                           year = NULL) {
 
+  cols <- c(Påvist=NA_real_,`Ikke påvist` = NA_real_)
+
   if (salmonella == FALSE) {
 
     df <- data %>%
+      filter(bakterie_gruppe != "Salmonella",
+             report_year %in% year) %>%
       select(
-        -c(
-          materialenavn,
-          cut_off_gruppe,
-          cut_off,substans,
-          analyttkode_gruppe,
-          MIC,phenotype,
-          plate_def,
-          panel,
-          range_min,
-          range_max
-        )
+        report_year,
+        ansvarlig_seksjon,
+        innsendelsesnummer,
+        provenummer,
+        delprovenummer,
+        undersokelsesnummer,
+        resultatnummer,
+        art_gruppe,
+        mat_gruppe,
+        salmonella_materiale,
+        bakterie_kategori,
+        bakterie_gruppe,
+        plate_def,
+        resultat
       ) %>%
-      filter(resultat != "Undersøkt") %>%
       distinct() %>%
       select(
         report_year,
         art_gruppe,
         mat_gruppe,
-        bakterie_gruppe,
+        salmonella_materiale,
         bakterie_kategori,
+        bakterie_gruppe,
+        plate_def,
         resultat
       ) %>%
-      filter(bakterie_gruppe != "Salmonella") %>%
       group_by_all() %>%
       count() %>%
-      ungroup()
+      ungroup() %>%
+      pivot_wider(
+        names_from = "resultat",
+        values_from = "n",
+        values_fill = 0
+      ) %>%
+      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
+      mutate_at(c("Påvist","Ikke påvist"),
+                ~replace_na(., 0)) %>%
+      mutate(
+        Total = Påvist + `Ikke påvist`
+      )
 
   } else {
 
     df <- data %>%
+      filter(bakterie_gruppe == "Salmonella",
+             art_gruppe != "EX",
+             report_year %in% year) %>%
       select(
-        -c(
-          materialenavn,
-          cut_off_gruppe,
-          cut_off,substans,
-          analyttkode_gruppe,
-          MIC,phenotype,
-          plate_def,
-          panel,
-          range_min,
-          range_max
-        )
+        report_year,
+        ansvarlig_seksjon,
+        innsendelsesnummer,
+        provenummer,
+        delprovenummer,
+        undersokelsesnummer,
+        resultatnummer,
+        art_gruppe,
+        mat_gruppe,
+        salmonella_materiale,
+        bakterie_kategori,
+        bakterie_gruppe,
+        plate_def,
+        resultat
       ) %>%
-      filter(resultat != "Undersøkt") %>%
       distinct() %>%
       select(
         report_year,
         art_gruppe,
         mat_gruppe,
-        bakterie_gruppe,
+        salmonella_materiale,
         bakterie_kategori,
+        bakterie_gruppe,
+        plate_def,
         resultat
       ) %>%
-      filter(bakterie_gruppe == "Salmonella",
-             art_gruppe != "EX",
-             resultat == "Påvist") %>%
       group_by_all() %>%
       count() %>%
-      ungroup()
+      ungroup() %>%
+      pivot_wider(
+        names_from = "resultat",
+        values_from = "n",
+        values_fill = 0
+      ) %>%
+      add_column(!!!cols[!names(cols) %in% names(.)]) %>%
+      mutate_at(c("Påvist","Ikke påvist"),
+                ~replace_na(., 0)) %>%
+      mutate(
+        Total = Påvist + `Ikke påvist`
+      )
   }
 
-  if (!is.null(year)) {
-    filter(df, report_year %in% year)
-  } else {
     return(df)
-  }
-
 }
