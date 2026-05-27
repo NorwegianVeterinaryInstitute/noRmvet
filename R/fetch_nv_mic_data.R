@@ -84,7 +84,8 @@ fetch_nv_mic_data <- function(server = NULL,
       reduce(tables, left_join, .init = .) %>%
       filter(substr(kjennelsekode, 1,4) %in% c("0202", "0201") |
                kjennelsekode == "02",
-             ! hensiktkode %in% c("06097","0200303","0700109")) %>%
+             ! hensiktkode %in% c("06097","0200303","0700109"),
+             substr(hensiktkode, 1,2) != "09") %>%
       mutate(resultat = case_when(
         substr(kjennelsekode, 1,4) == "0202" ~ "Påvist",
         kjennelsekode == "02" ~ "Undersøkt",

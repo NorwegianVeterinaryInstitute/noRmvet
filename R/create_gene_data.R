@@ -9,8 +9,12 @@
 #' @export
 #' @import dplyr
 #'
-create_gene_data <- function(data) {
+create_gene_data <- function(data, year = NULL) {
   data %>%
+    filter(! hensiktkode %in% c("06097","0200303","0700109","0800110")) %>%
+    filter(
+      report_year %in% year
+    ) %>%
     select(
       report_year,
       aar,
@@ -20,6 +24,8 @@ create_gene_data <- function(data) {
       delprovenummer,
       undersokelsesnummer,
       resultatnummer,
+      uttaksdato,
+      start_dato,
       art_gruppe,
       mat_gruppe,
       bakterie_kategori,

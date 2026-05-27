@@ -4,12 +4,10 @@
 \alias{count_samples}
 \title{Count number of samples}
 \usage{
-count_samples(data, salmonella = FALSE, year = NULL)
+count_samples(data, year = NULL)
 }
 \arguments{
 \item{data}{Input data}
-
-\item{salmonella}{If TRUE, will return data on Salmonella samples}
 
 \item{year}{Year to filter on}
 }

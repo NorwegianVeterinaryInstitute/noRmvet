@@ -82,6 +82,7 @@ update_bacterial_group <- function(server,
         substr(kode, 1, 8) == "04060304" ~ "Actinobacillus",
         substr(kode, 1, 8) == "04430201" ~ "Actinobacillus",
         kode == "0403010208" ~ "Campylobacter upsaliensis",
+        kode == "04030102" ~ "Campylobacter sp.",
         TRUE ~ as.character(NA)
       )
     ) %>%
