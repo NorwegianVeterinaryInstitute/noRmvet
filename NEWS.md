@@ -1,3 +1,30 @@
+## [1.3.0](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.2.0...noRmvet-v1.3.0) (2026-05-27)
+
+
+### Features
+
+* added function for detecting duplicated animal samples ([61032d1](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/61032d1be410e07d8daa01468c31ce8ce887f828))
+* added function for generating EFSA ESBL gene data ([6e8e4c7](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/6e8e4c71de6211c5b5cc8e8efd20bfd0902920aa))
+* added function for generating negative EFSA data ([065e42b](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/065e42b035799c108f3b3cc3caecb68ab33c43ac))
+* added functions for generating EFSA data ([101efd3](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/101efd37beb6a0308cee6db9affe9b6489eb27bf))
+
+
+### Bug Fixes
+
+* added code for campylobacter sp. to the bacterial group ([52036ff](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/52036ffaf8b384b3dec753cfe61f1edc57fc6767))
+* added dates to gene data output ([f60f2e8](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/f60f2e867d01709c2c645fd42759189ba4841548))
+* added ESBL plate definitions ([450f12c](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/450f12c349a537e1b60f36a5b8a3c74c8a6d047a))
+* added removal of hensiktkode 09** ([ca67c25](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/ca67c258a47513f9ae9df6fde8737677cbae119c))
+* adjusted how the count_samples function works ([e066d1b](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/e066d1b88c4ff379ae1173cdf98338d8308ed5b4))
+* corrected definition for meat samples ([1e0e7a1](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/1e0e7a10ce174eb3445e80285a7c3c5e3bfdaab2))
+* correction to gene data, added metodekode to output to separate categories properly ([2978113](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/297811309b1518f072de5670512bec9d4dc537ee))
+* removed the salmonella argument from the count_samples function ([6974ed2](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/6974ed2939231e9667194f69b60f44c28374960d))
+
+
+### Documentation
+
+* updated readme ([9e9a6c1](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/9e9a6c115f933431fa92d7b6c913dbb2a7479707))
+
 ## [1.2.0](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.1.0...noRmvet-v1.2.0) (2026-05-04)
 
 
