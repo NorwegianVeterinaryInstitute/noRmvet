@@ -26,6 +26,7 @@ list_palettes <- function(group = NULL) {
       "Villfugl" = "#8E7DAF",
       "Villsvin" = "#6A568C",
       "Rein" = "#CDBE75",
+      "Rev" = "#B85C87",
       "R\u00e5dyr" = "#8B6B4E"
     )
   }
