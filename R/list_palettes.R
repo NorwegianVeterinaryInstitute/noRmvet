@@ -9,8 +9,7 @@
 #' @export
 #'
 list_palettes <- function(group = NULL) {
-
-  if (! group %in% c("species","food","am_groups","mdr")) {
+  if (!group %in% c("species", "food", "am_groups", "mdr")) {
     stop("Please use correct palette call.", call. = FALSE)
   }
 
@@ -50,31 +49,44 @@ list_palettes <- function(group = NULL) {
 
   if (group == "am_groups") {
     palette <- c(
-      "Aminoglykosider" = "#8dd3c7",
-      "Andre aminoglykosider" = "#27665b",
-      "Kinoloner" = "#b3cbff",
-      "Tetrasykliner" = "#bebada",
-      "Cefalosporiner (1. gen)" = "#fb8072",
-      "Cefalosporiner (2. gen)" = "#fb8072",
-      "Cefalosporiner (3. gen)" = "#fb8072",
-      "Cefalosporiner (4. gen)" = "#fb8072",
-      "Cefalosporiner (5. gen)" = "#fb8072",
-      "Amfenikoler" = "#2f6488",
-      "Makrolider/linkosamider" = "#fdb462",
-      "Beta-laktamer/penicilliner" = "#b3de69",
-      "Karbapenemer" = "#ffed6f",
-      "Polymyxiner" = "#bc80bd",
-      "Sulfonamider og trimetoprim" = "#ccebc5",
-      "Ionoforer" = "#d9d9d9",
-      "Glykopeptider" = "black",
-      "Bacitracin*" = "#b15928",
-      "Avilamycin*" = "#ffff99",
-      "Daptomycin*" = "#ff7f00",
-      "Mupirocin*" = "#d9d9d9",
-      "Virginiamycin*" = "#fccde5",
-      "Antimykobakterielle" = "grey40",
-      "Pleuromutiliner" = "#8dd3a3",
-      "Steroider" = "red"
+      # Aminoglycosides (teal)
+      "Aminoglykosider" = "#2A9D8F",
+      "Andre aminoglykosider" = "#1F6F66",
+
+      # Quinolones (blue)
+      "Kinoloner" = "#4E79A7",
+
+      # Tetracyclines (purple)
+      "Tetrasykliner" = "#8E6BBE",
+
+      # Cephalosporins (red family)
+      "Cefalosporiner (1. gen)" = "#F2AAA3",
+      "Cefalosporiner (2. gen)" = "#E9877B",
+      "Cefalosporiner (3. gen)" = "#D65F59",
+      "Cefalosporiner (4. gen)" = "#BF4A43",
+      "Cefalosporiner (5. gen)" = "#8F2D2A",
+
+      # Other major classes
+      "Amfenikoler" = "#5F8FB5",
+      "Makrolider/Linkosamider" = "#D9902F",
+      "Beta-laktamer/Penicilliner" = "#59A14F",
+      "Karbapenemer" = "#F28E2B",
+      "Polymyxiner, kolistin*" = "#CC79A7",
+      "Sulfonamider og trimetoprim" = "#8DAA3A",
+
+      # Miscellaneous
+      "Ionoforer" = "#B8B8B8",
+      "Glykopeptider" = "#3A3A3A",
+
+      # Individual agents
+      "Bacitracin*" = "#8C613C",
+      "Avilamycin*" = "#D4A017",
+      "Daptomycin*" = "#E15759",
+      "Mupirocin*" = "#7F7F7F",
+      "Virginiamycin*" = "#E377C2",
+      "Antimycobakterielle" = "#5F6368",
+      "Pleuromutiliner" = "#4CB391",
+      "Steroider" = "#C44E52"
     )
   }
 
@@ -88,5 +100,4 @@ list_palettes <- function(group = NULL) {
   }
 
   return(palette)
-
 }
