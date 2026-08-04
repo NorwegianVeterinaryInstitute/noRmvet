@@ -15,18 +15,18 @@ list_palettes <- function(group = NULL) {
 
   if (group == "species") {
     palette <- c(
-      "H\u00F8ns" = "#a6cee3",
-      "Svin" = "#b2df8a",
-      "Storfe" = "#33a02c",
-      "Hund" = "#fb9a99",
-      "Kalkun" = "#1f78b4",
-      "Sau" = "#e31a1c",
-      "Hest" = "#fdbf6f",
-      "Katt" = "#ff7f00",
-      "Villfugl" = "#cab2d6",
-      "Villsvin" = "#6a3d9a",
-      "Rein" = "#ffff99",
-      "R\u00e5dyr" = "#b15928"
+      "H\u00F8ns" = "#5B8DB8",
+      "Svin" = "#7AA974",
+      "Storfe" = "#4C8C5A",
+      "Hund" = "#B96A6C",
+      "Kalkun" = "#3F6F94",
+      "Sau" = "#A84A4A",
+      "Hest" = "#C89B62",
+      "Katt" = "#C7773C",
+      "Villfugl" = "#8E7DAF",
+      "Villsvin" = "#6A568C",
+      "Rein" = "#CDBE75",
+      "R\u00e5dyr" = "#8B6B4E"
     )
   }
 
@@ -78,9 +78,9 @@ list_palettes <- function(group = NULL) {
       # Other major classes
       "Amfenikoler" = "#5F8FB5",
       "Makrolider/Linkosamider" = "#D9902F",
-      "Beta-laktamer/Penicilliner" = "#59A14F",
+      "Beta-laktamer/penicilliner" = "#59A14F",
       "Karbapenemer" = "#F28E2B",
-      "Polymyxiner, kolistin*" = "#CC79A7",
+      "Polymykiner, kolistin*" = "#CC79A7",
       "Sulfonamider og trimetoprim" = "#8DAA3A",
 
       # Miscellaneous
