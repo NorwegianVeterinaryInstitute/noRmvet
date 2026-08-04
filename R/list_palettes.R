@@ -32,18 +32,27 @@ list_palettes <- function(group = NULL) {
 
   if (group == "food") {
     palette <- c(
-      "Ost" = "#ffff33",
-      "Skjell" = "#377eb8",
-      "Krepsdyr og bløtdyr" = "#984ea3",
-      "Meieriprodukter" = "#f781bf",
-      "Storfekjøtt" = "#33a02c",
-      "Kyllingkjøtt" = "#a6cee3",
-      "Kalkunkjøtt" = "#1f78b4",
-      "Svinekjøtt" = "#b2df8a",
-      "Sauekjøtt" = "#e31a1c",
-      "Bladsalat" = "#4daf4a",
-      "Halva" = "#999999",
-      "Krydderurter" = "#a65628"
+      # Seafood (blue family)
+      "Skjell" = "#3B82A0",
+      "Krepsdyr og bløtdyr" = "#7566A8",
+
+      # Dairy (soft cream/pink)
+      "Meieriprodukter" = "#C987A8",
+      "Ost" = "#D1B65A",
+
+      # Meat (warm earthy tones)
+      "Storfekjøtt" = "#5B8C5A",
+      "Svinekjøtt" = "#B07A62",
+      "Sauekjøtt" = "#A85454",
+      "Kyllingkjøtt" = "#7FA6B8",
+      "Kalkunkjøtt" = "#4F7896",
+
+      # Plant products (green family)
+      "Bladsalat" = "#4E8B57",
+      "Krydderurter" = "#7B6B3A",
+
+      # Other/processed
+      "Halva" = "#7A7A7A"
     )
   }
 
