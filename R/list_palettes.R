@@ -9,8 +9,7 @@
 #' @export
 #'
 list_palettes <- function(group = NULL) {
-
-  if (! group %in% c("species","food","am_groups","mdr")) {
+  if (!group %in% c("species", "food", "am_groups", "mdr")) {
     stop("Please use correct palette call.", call. = FALSE)
   }
 
@@ -33,48 +32,70 @@ list_palettes <- function(group = NULL) {
 
   if (group == "food") {
     palette <- c(
-      "Ost" = "#ffff33",
-      "Skjell" = "#377eb8",
-      "Krepsdyr og bløtdyr" = "#984ea3",
-      "Meieriprodukter" = "#f781bf",
-      "Storfekjøtt" = "#33a02c",
-      "Kyllingkjøtt" = "#a6cee3",
-      "Kalkunkjøtt" = "#1f78b4",
-      "Svinekjøtt" = "#b2df8a",
-      "Sauekjøtt" = "#e31a1c",
-      "Bladsalat" = "#4daf4a",
-      "Halva" = "#999999",
-      "Krydderurter" = "#a65628"
+      # Seafood (blue family)
+      "Skjell" = "#3B82A0",
+      "Krepsdyr og bløtdyr" = "#7566A8",
+
+      # Dairy (soft cream/pink)
+      "Meieriprodukter" = "#C987A8",
+      "Ost" = "#D1B65A",
+
+      # Meat (warm earthy tones)
+      "Storfekjøtt" = "#5B8C5A",
+      "Svinekjøtt" = "#B07A62",
+      "Sauekjøtt" = "#A85454",
+      "Kyllingkjøtt" = "#7FA6B8",
+      "Kalkunkjøtt" = "#4F7896",
+
+      # Plant products (green family)
+      "Bladsalat" = "#4E8B57",
+      "Krydderurter" = "#7B6B3A",
+
+      # Other/processed
+      "Halva" = "#7A7A7A"
     )
   }
 
   if (group == "am_groups") {
     palette <- c(
-      "Aminoglykosider" = "#8dd3c7",
-      "Andre aminoglykosider" = "#27665b",
-      "Kinoloner" = "#b3cbff",
-      "Tetrasykliner" = "#bebada",
-      "Cefalosporiner (1. gen)" = "#fb8072",
-      "Cefalosporiner (2. gen)" = "#fb8072",
-      "Cefalosporiner (3. gen)" = "#fb8072",
-      "Cefalosporiner (4. gen)" = "#fb8072",
-      "Cefalosporiner (5. gen)" = "#fb8072",
-      "Amfenikoler" = "#2f6488",
-      "Makrolider/linkosamider" = "#fdb462",
-      "Beta-laktamer/penicilliner" = "#b3de69",
-      "Karbapenemer" = "#ffed6f",
-      "Polymyxiner" = "#bc80bd",
-      "Sulfonamider og trimetoprim" = "#ccebc5",
-      "Ionoforer" = "#d9d9d9",
-      "Glykopeptider" = "black",
-      "Bacitracin*" = "#b15928",
-      "Avilamycin*" = "#ffff99",
-      "Daptomycin*" = "#ff7f00",
-      "Mupirocin*" = "#d9d9d9",
-      "Virginiamycin*" = "#fccde5",
-      "Antimykobakterielle" = "grey40",
-      "Pleuromutiliner" = "#8dd3a3",
-      "Steroider" = "red"
+      # Aminoglycosides (teal)
+      "Aminoglykosider" = "#2A9D8F",
+      "Andre aminoglykosider" = "#1F6F66",
+
+      # Quinolones (blue)
+      "Kinoloner" = "#4E79A7",
+
+      # Tetracyclines (purple)
+      "Tetrasykliner" = "#8E6BBE",
+
+      # Cephalosporins (red family)
+      "Cefalosporiner (1. gen)" = "#F2AAA3",
+      "Cefalosporiner (2. gen)" = "#E9877B",
+      "Cefalosporiner (3. gen)" = "#D65F59",
+      "Cefalosporiner (4. gen)" = "#BF4A43",
+      "Cefalosporiner (5. gen)" = "#8F2D2A",
+
+      # Other major classes
+      "Amfenikoler" = "#5F8FB5",
+      "Makrolider/Linkosamider" = "#D9902F",
+      "Beta-laktamer/Penicilliner" = "#59A14F",
+      "Karbapenemer" = "#F28E2B",
+      "Polymyxiner, kolistin*" = "#CC79A7",
+      "Sulfonamider og trimetoprim" = "#8DAA3A",
+
+      # Miscellaneous
+      "Ionoforer" = "#B8B8B8",
+      "Glykopeptider" = "#3A3A3A",
+
+      # Individual agents
+      "Bacitracin*" = "#8C613C",
+      "Avilamycin*" = "#D4A017",
+      "Daptomycin*" = "#E15759",
+      "Mupirocin*" = "#7F7F7F",
+      "Virginiamycin*" = "#E377C2",
+      "Antimycobakterielle" = "#5F6368",
+      "Pleuromutiliner" = "#4CB391",
+      "Steroider" = "#C44E52"
     )
   }
 
@@ -88,5 +109,4 @@ list_palettes <- function(group = NULL) {
   }
 
   return(palette)
-
 }
