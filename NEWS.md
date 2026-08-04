@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.3.1...noRmvet-v1.3.2) (2026-08-04)
+
+
+### Bug Fixes
+
+* added fox to the colour palette ([10cec26](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/10cec26313cbf03e285f6817d03b0acc26327d0d))
+* added goat to the colour palette ([36840a3](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/36840a3d85ab716ade2379a9cc1decbab00688e7))
+* updated colour palette for animals ([2c85e29](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/2c85e29bc84dd8e03232ffffcb63e36fa2febbe0))
+
 ## [1.3.1](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.3.0...noRmvet-v1.3.1) (2026-08-04)
 
 
