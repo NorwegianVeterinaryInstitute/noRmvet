@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.3.0...noRmvet-v1.3.1) (2026-08-04)
+
+
+### Bug Fixes
+
+* adjusted colour of food variable ([8f746d2](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/8f746d286baa65031fe98a18f6a71fcd56cc3391))
+* corrected colour palettes ([368ff88](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/368ff8826775e70821c0a15a515170e86332052b))
+* fixed incorrect conversion of numeric variables in res_calc function ([523ec24](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/523ec24d8bfa444c0d2b2a4f891fd5c454f17d17))
+
 ## [1.3.0](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.2.0...noRmvet-v1.3.0) (2026-05-27)
 
 
