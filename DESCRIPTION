@@ -20,5 +20,6 @@ Imports:
   ggplot2,
   purrr,
   tibble,
-  diffdf
+  diffdf,
+  lubridate
 RoxygenNote: 7.3.3
