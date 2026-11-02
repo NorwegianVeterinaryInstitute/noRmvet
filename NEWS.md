@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.3.3...noRmvet-v1.4.0) (2026-11-02)
+
+
+### Features
+
+* added parameter to keep all columns in create_mic_and_phenotype ([#59](https://github.com/NorwegianVeterinaryInstitute/noRmvet/issues/59)) ([93044ee](https://github.com/NorwegianVeterinaryInstitute/noRmvet/commit/93044eee2f6197217b76f58cd5ffff87cb59ac00))
+
 ## [1.3.3](https://github.com/NorwegianVeterinaryInstitute/noRmvet/compare/noRmvet-v1.3.2...noRmvet-v1.3.3) (2026-09-08)
 
 
