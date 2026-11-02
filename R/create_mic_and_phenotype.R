@@ -3,6 +3,7 @@
 #' Run this function to generate corrected MIC values and phenotype definitions, as well as removing redundant columns.
 #'
 #' @param data The data frame from fetch_nv_data
+#' @param keep_all Set to TRUE if you wish to filter out redundant columns (default: FALSE)
 #' @param retain_plate2 Set to TRUE if you do not wish to filter out plate2 results (020185)
 #'
 #' @author Håkon Kaspersen \email{hakon.kaspersen@@vetinst.no}
@@ -10,7 +11,7 @@
 #' @export
 #' @import dplyr
 #'
-create_mic_and_phenotype <- function(data, retain_plate2 = FALSE) {
+create_mic_and_phenotype <- function(data, keep_all = FALSE, retain_plate2 = FALSE) {
 
   data <- data %>%
     filter(metodekode_sens != "020007") %>%
@@ -60,34 +61,38 @@ create_mic_and_phenotype <- function(data, retain_plate2 = FALSE) {
         MIC > cut_off ~ "Resistant",
         TRUE ~ "Sensitive"
       )
-    ) %>%
-    select(
-      aar,
-      ansvarlig_seksjon,
-      innsendelsesnummer,
-      provenummer,
-      delprovenummer,
-      resultatnummer,
-      sens_undersokelsesnummer,
-      report_year,
-      art_gruppe,
-      materialenavn,
-      mat_gruppe,
-      salmonella_materiale,
-      bakterie_kategori,
-      bakterie_gruppe,
-      resultat,
-      cut_off_gruppe,
-      cut_off,
-      substans,
-      analyttkode_gruppe,
-      MIC,
-      phenotype,
-      plate_def,
-      panel,
-      range_min,
-      range_max
     )
+  
+  if (!isTRUE(keep_all)) {
+    data <- data %>%
+      select(
+        aar,
+        ansvarlig_seksjon,
+        innsendelsesnummer,
+        provenummer,
+        delprovenummer,
+        resultatnummer,
+        sens_undersokelsesnummer,
+        report_year,
+        art_gruppe,
+        materialenavn,
+        mat_gruppe,
+        salmonella_materiale,
+        bakterie_kategori,
+        bakterie_gruppe,
+        resultat,
+        cut_off_gruppe,
+        cut_off,
+        substans,
+        analyttkode_gruppe,
+        MIC,
+        phenotype,
+        plate_def,
+        panel,
+        range_min,
+        range_max
+      )
+  }
 
   if (retain_plate2 != TRUE) {
     data <- data %>%
