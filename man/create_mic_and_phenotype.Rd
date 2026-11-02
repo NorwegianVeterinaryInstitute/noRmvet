@@ -4,10 +4,12 @@
 \alias{create_mic_and_phenotype}
 \title{Clean up data from NORM-VET database}
 \usage{
-create_mic_and_phenotype(data, retain_plate2 = FALSE)
+create_mic_and_phenotype(data, keep_all = FALSE, retain_plate2 = FALSE)
 }
 \arguments{
 \item{data}{The data frame from fetch_nv_data}
+
+\item{keep_all}{Set to TRUE if you wish to filter out redundant columns (default: FALSE)}
 
 \item{retain_plate2}{Set to TRUE if you do not wish to filter out plate2 results (020185)}
 }
